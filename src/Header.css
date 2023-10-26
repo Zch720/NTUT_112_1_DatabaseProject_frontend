@@ -1,0 +1,63 @@
+header {
+    height: calc(7.5vh + 2.6rem);
+    display: flex;
+    flex-direction: row;
+    background-color: #A4895C;
+}
+
+#header-logo {
+    padding: 0 4% 0 2%;
+}
+
+#header-logo a img{
+    height: 100%;
+}
+
+#header-tools {
+    flex-grow: 1;
+}
+
+#user-tools-bar {
+    height: 7.5vh;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#header-search-box {
+    height: 50%;
+    padding: 1%;
+}
+
+#user-tools-bar a{
+    height: 50%;
+    padding: 1%;
+}
+
+#user-tools-bar a img {
+    height: 100%;
+    padding: 1%;
+}
+
+#account-icon {
+    height: 50%;
+    padding: 1%;
+}
+
+
+#navigation-bar {
+    display: flex;
+}
+
+#navigation-bar a {
+    height: 1.8rem;
+    padding: 0.4rem 5%;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#navigation-bar a:hover {
+    color: #594F40;
+    background-color: #D4BD98;
+}

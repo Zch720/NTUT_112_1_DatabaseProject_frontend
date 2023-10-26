@@ -1,0 +1,20 @@
+#search-box {
+    height: 100%;
+    padding: 1%;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+}
+
+#search-box img{
+    height: 80%;
+    padding: 2%;
+}
+
+#search-box input{
+    width: 100%;
+    padding: 2%;
+    margin: 2%;
+    box-sizing: border-box;
+    border-style: none;;
+}
