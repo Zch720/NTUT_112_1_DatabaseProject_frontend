@@ -1,0 +1,31 @@
+#banner {
+    width: 90vw;
+    margin: 2% auto;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+#banner-img {
+    width: 100%;
+    animation: move 10s infinite;
+}
+
+/* test */
+@keyframes move {
+    0%, 15% {
+      transform: translateX(0);
+    }
+    20%, 35% {
+      transform: translateX(-90vw);
+    }
+    40%, 55% {
+      transform: translateX(-180vw);
+    }
+    60%, 75% {
+      transform: translateX(-270vw);
+    }
+    80%, 100% {
+      transform: translateX(-360vw);
+    }
+  }

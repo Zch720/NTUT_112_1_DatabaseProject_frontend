@@ -1,7 +1,7 @@
 import "./Header.css"
 import SearchBox from "./SearchBox";
-import account_icon from "./assets/account_icon.png"
-import shopping_cart_icon from "./assets/shopping_cart_icon.png"
+import ACCOUNT_ICON from "./assets/account_icon.png"
+import SHOPPING_CART_ICON from "./assets/shopping_cart_icon.png"
 
 function Logo() {
     return (
@@ -13,8 +13,8 @@ function ToolsBar() {
     return (
         <div id="user-tools-bar">
             <div id="header-search-box"><SearchBox /></div>
-            <img id="account-icon" src={account_icon} />
-            <a href="./shopping-cart"><img src={shopping_cart_icon} /></a>
+            <img id="account-icon" src={ACCOUNT_ICON} />
+            <a href="./shopping-cart"><img src={SHOPPING_CART_ICON} /></a>
         </div>
     );
 }
