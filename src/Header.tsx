@@ -5,7 +5,7 @@ import SHOPPING_CART_ICON from "./assets/shopping_cart_icon.png"
 
 function Logo() {
     return (
-        <a href="./home"><img src="/logo_with_word.PNG" /></a>
+        <a href="./home#"><img src="/logo_with_word.PNG" /></a>
     );
 }
 

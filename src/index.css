@@ -1,3 +1,17 @@
+@font-face {
+    font-family: FakePearl-Regular;
+    src: url(https://cdn.jsdelivr.net/gh/max32002/FakePearl@1.1/webfont/FakePearl-Regular.woff2) format("woff2"), url(https://cdn.jsdelivr.net/gh/max32002/FakePearl@1.1/webfont/FakePearl-Regular.woff) format("woff");
+}
+
+@font-face {
+    font-family: kurewa-gothic;
+    src: url(https://cdn.jsdelivr.net/gh/max32002/kurewa-gothic@1.071/webfont/CJK%20TC/KurewaGothicCjkTc-Regular.woff2) format("woff2");
+}
+
+* {
+    font-family: kurewa-gothic;
+}
+
 html {
     padding: 0;
 }
@@ -8,8 +22,16 @@ body {
 }
 
 h3 {
+    font-size: 1.5rem;
     margin-block-start: 0;
     margin-block-end: 0;
     margin-inline-start: 0;
     margin-inline-end: 0;
+}
+
+a,
+a:link,
+a:visited {
+    text-decoration: none;
+    color: black;
 }
