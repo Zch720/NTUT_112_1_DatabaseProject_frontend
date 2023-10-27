@@ -1,10 +1,10 @@
-import search_icon from "./assets/search_icon.png"
+import SEARCH_ICON from "./assets/search_icon.png"
 import "./SearchBox.css"
 
 export default function SearchBox() {
     return (
         <div id="search-box">
-            <img src={search_icon}/>
+            <img src={SEARCH_ICON}/>
             <input type="search"/>
         </div>
     );
