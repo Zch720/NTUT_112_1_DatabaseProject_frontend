@@ -1,0 +1,16 @@
+.sign-in-option {
+    display: flex;
+    margin: 0 25vw;
+    margin-top: 11vh;
+}
+
+.sign-in-option p{
+    margin: 1rem 1rem 1rem 0;
+    font-size: 1.2rem;
+}
+
+.sign-in-option a{
+    margin: 1rem 1rem 1rem 0;
+    color: #919191;
+    font-size: 1.2rem;
+}

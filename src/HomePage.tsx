@@ -1,9 +1,7 @@
 import "./HomePage.css";
 import React from "react";
-import Header from "./Header";
 import Banner from "./Banner";
 import ShopList from "./ShopList";
-import Footer from "./Footer";
 import { ShopItemProps } from "./ShopList";
 
 function HomePageAboutUs() {
@@ -36,11 +34,9 @@ function HomePageRecommendedShops() {
 export default function HomePage() {
     return (
         <React.Fragment>
-            <Header />
             <Banner />
             <HomePageAboutUs />
             <HomePageRecommendedShops />
-            <Footer />
         </React.Fragment>
     );
 }

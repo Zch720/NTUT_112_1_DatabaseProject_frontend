@@ -5,7 +5,7 @@ import SHOPPING_CART_ICON from "./assets/shopping_cart_icon.png"
 
 function Logo() {
     return (
-        <a href="./home#"><img src="/logo_with_word.PNG" /></a>
+        <a href="/home#"><img src="/logo_with_word.PNG" /></a>
     );
 }
 
@@ -13,8 +13,8 @@ function ToolsBar() {
     return (
         <div id="user-tools-bar">
             <div id="header-search-box"><SearchBox /></div>
-            <img id="account-icon" src={ACCOUNT_ICON} />
-            <a href="./shopping-cart"><img src={SHOPPING_CART_ICON} /></a>
+            <a href="/user/signin"><img id="account-icon" src={ACCOUNT_ICON} /></a>
+            <a href="/shopping-cart"><img src={SHOPPING_CART_ICON} /></a>
         </div>
     );
 }
@@ -22,9 +22,9 @@ function ToolsBar() {
 function NavigationBar() {
     return (
         <div id="navigation-bar">
-            <a href="./products#">商品列表</a>
-            <a href="./shops#">商店列表</a>
-            <a href="./about#">關於我們</a>
+            <a href="/products#">商品列表</a>
+            <a href="/shops#">商店列表</a>
+            <a href="/about#">關於我們</a>
         </div>
     );
 }

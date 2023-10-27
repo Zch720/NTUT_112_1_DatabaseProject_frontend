@@ -1,0 +1,16 @@
+.sign-up-option {
+    display: flex;
+    margin: 0 25vw;
+    margin-top: 3vh;
+}
+
+.sign-up-option p{
+    margin: 1rem 1rem 1rem 0;
+    font-size: 1.2rem;
+}
+
+.sign-up-option a{
+    margin: 1rem 1rem 1rem 0;
+    color: #919191;
+    font-size: 1.2rem;
+}
