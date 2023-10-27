@@ -36,11 +36,9 @@ function HomePageRecommendedShops() {
 export default function HomePage() {
     return (
         <React.Fragment>
-            <Header />
             <Banner />
             <HomePageAboutUs />
             <HomePageRecommendedShops />
-            <Footer />
         </React.Fragment>
     );
 }
