@@ -1,0 +1,23 @@
+.home-page-title {
+    margin: 3vh auto 2vh auto;
+    display: table;
+}
+
+.home-page-about-us {
+    display: flex;
+    width: 90vw;
+    margin: 0 auto;
+}
+
+#home-page-about-us-img {
+    width: 45vw;
+    background-image: url(./assets/elecookies_realistic.png);
+    background-size: cover;
+    background-position: center;
+}
+
+.home-page-about-us p {
+    font-size: 1.2rem;
+    width: 43vw;
+    margin-left: 2vw;
+}

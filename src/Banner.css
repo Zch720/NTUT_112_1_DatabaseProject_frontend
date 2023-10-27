@@ -1,0 +1,33 @@
+.banner {
+    width: 90vw;
+    margin: 2% auto;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+.banner img {
+    width: 90vw;
+    animation: move 10s infinite;
+}
+
+@keyframes move {
+    0%, 10% {
+        transform: translateX(0);
+    }
+    15%, 30% {
+        transform: translateX(-90vw);
+    }
+    35%, 50% {
+        transform: translateX(-180vw);
+    }
+    55%, 70% {
+        transform: translateX(-270vw);
+    }
+    75%, 90% {
+        transform: translateX(-360vw);
+    }
+    95%, 100% {
+        transform: translateX(-450vw);
+    }
+}
