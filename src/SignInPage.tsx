@@ -6,16 +6,16 @@ function SignInOption() {
     return (
         <div className="sign-in-option">
             <p>登入</p>
-            <a style={{color: "#919191"}} href="">註冊</a>
+            <a style={{color: "#919191"}} href="/user/signup">註冊</a>
         </div>
     );
 }
 
 function SignInInputs() {
     return (
-        <div className="sign-in-inputs">
+        <div className="sign-page-inputs">
             <label className="sign-page-input">
-                使用者名稱 / email<br/>
+                使用者名稱 / E-mail<br/>
                 <input type="text"/>
             </label>
             <label className="sign-page-input">

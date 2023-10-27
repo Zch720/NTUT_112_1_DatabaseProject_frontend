@@ -5,6 +5,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import HomePage from "./HomePage";
 import SignInPage from "./SignInPage";
+import SignUpPage from "./SignUpPage";
 
 function MainBody() {
 	return (
@@ -14,6 +15,7 @@ function MainBody() {
 					<Route path="/" element={<Navigate to="/home" />} />
 					<Route path="/home" element={<HomePage />} />
 					<Route path="/user/signin" element={<SignInPage />} />
+					<Route path="/user/signup" element={<SignUpPage />} />
 				</Routes>
 			</BrowserRouter>
 		</main>
