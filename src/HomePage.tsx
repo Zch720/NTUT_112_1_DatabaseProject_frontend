@@ -1,10 +1,10 @@
+import "./HomePage.css";
 import React from "react";
 import Header from "./Header";
 import Banner from "./Banner";
 import ShopList from "./ShopList";
 import Footer from "./Footer";
 import { ShopItemProps } from "./ShopList";
-import "./HomePage.css";
 
 function HomePageAboutUs() {
     return (
@@ -23,7 +23,7 @@ function HomePageAboutUs() {
     );
 }
 
-function HomePageRecommendShops() {
+function HomePageRecommendedShops() {
     return (
         <React.Fragment>
             <h3 className="home-page-title">推薦商店</h3>
@@ -39,7 +39,7 @@ export default function HomePage() {
             <Header />
             <Banner />
             <HomePageAboutUs />
-            <HomePageRecommendShops />
+            <HomePageRecommendedShops />
             <Footer />
         </React.Fragment>
     );

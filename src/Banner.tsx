@@ -7,12 +7,13 @@ import "./Banner.css"
 
 export default function Banner() {
     return (
-        <div id = "banner">
-            <img id="banner-img" src={BANNER_IMG1}/>
-            <img id="banner-img" src={BANNER_IMG2}/>
-            <img id="banner-img" src={BANNER_IMG3}/>
-            <img id="banner-img" src={BANNER_IMG4}/>
-            <img id="banner-img" src={BANNER_IMG5}/>
+        <div className="banner">
+            <img src={BANNER_IMG1}/>
+            <img src={BANNER_IMG2}/>
+            <img src={BANNER_IMG3}/>
+            <img src={BANNER_IMG4}/>
+            <img src={BANNER_IMG5}/>
+            <img src={BANNER_IMG1}/>
         </div>
     );
 }

@@ -22,9 +22,9 @@ function ToolsBar() {
 function NavigationBar() {
     return (
         <div id="navigation-bar">
-            <a href="./products">商品列表</a>
-            <a href="./shops">商店列表</a>
-            <a href="./about">關於我們</a>
+            <a href="./products#">商品列表</a>
+            <a href="./shops#">商店列表</a>
+            <a href="./about#">關於我們</a>
         </div>
     );
 }

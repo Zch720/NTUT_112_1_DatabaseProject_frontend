@@ -3,7 +3,7 @@ import "./SearchBox.css"
 
 export default function SearchBox() {
     return (
-        <div id="search-box">
+        <div className="search-box">
             <img src={SEARCH_ICON}/>
             <input type="search"/>
         </div>

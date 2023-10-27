@@ -7,7 +7,6 @@ export type ShopItemProps = {
 }
 
 function ShopItem({ shopUrl, image, shopName }: ShopItemProps) {
-
     return (
         <div className="shop-list-item">
             <a href={shopUrl}><img src={image} /></a>

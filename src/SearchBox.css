@@ -1,4 +1,4 @@
-#search-box {
+.search-box {
     height: 100%;
     padding: 1%;
     background-color: white;
@@ -6,12 +6,12 @@
     display: flex;
 }
 
-#search-box img {
+.search-box img {
     height: 80%;
     padding: 2%;
 }
 
-#search-box input {
+.search-box input {
     width: 100%;
     padding: 2%;
     margin: 2%;
