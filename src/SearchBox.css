@@ -19,7 +19,11 @@
     border-style: none;
 }
 
-[type="search"]::-webkit-search-cancel-button {
+.search-box input:focus {
+    outline: none;
+}
+
+.search-box input::-webkit-search-cancel-button {
     -webkit-appearance: none;
     appearance: none;
     height: 10px;
