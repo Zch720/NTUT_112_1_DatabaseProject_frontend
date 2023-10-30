@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import HomePage from "./HomePage";
 import SignInPage from "./SignInPage";
 import SignUpPage from "./SignUpPage";
+import Account, { AccountType } from "./account/Account";
 
 function MainBody() {
 	return (
@@ -16,6 +17,7 @@ function MainBody() {
 					<Route path="/home" element={<HomePage />} />
 					<Route path="/user/signin" element={<SignInPage />} />
 					<Route path="/user/signup" element={<SignUpPage />} />
+					<Route path="/user" element={<Account accountType={AccountType.Customer} />} />
 				</Routes>
 			</BrowserRouter>
 		</main>

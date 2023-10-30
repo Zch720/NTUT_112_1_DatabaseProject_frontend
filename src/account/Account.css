@@ -1,0 +1,22 @@
+.account-menu {
+    width: 15vw;
+    margin: 2vh 1vw;
+}
+
+.account-menu-title {
+    margin: 1vh auto;
+    display: table;
+}
+
+.account-menu-options {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 2rem;
+    border-radius: 1.5rem;
+    background-color: #FAF0E3;
+    font-size: 1.4rem;
+}
+
+.account-menu-options a {
+    margin: 1vh 0;
+}
