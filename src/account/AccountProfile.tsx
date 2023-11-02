@@ -51,15 +51,15 @@ function GetProfileInfoState(canEdit: boolean): string {
 
 function AccountProfileInfo (infoType: string, buttonId: string, infoValue: string) {
     const [infoEditing, setInfoEditing] = useState<boolean>(false);
+    // TODO: input bug
     return(
         <div className="account-profile-info">
-                    {infoType}
-                    <input type="checkbox" id={buttonId} onClick={() => setInfoEditing(!infoEditing)}/>
-                    <label htmlFor={buttonId}></label><br/>
-                    <input className={GetProfileInfoState(infoEditing)} type="text" value={infoValue} readOnly></input>
-                </div>
+            {infoType}
+            <input type="checkbox" id={buttonId} onClick={() => setInfoEditing(!infoEditing)}/>
+            <label htmlFor={buttonId}></label><br/>
+            <input className={GetProfileInfoState(infoEditing)} type="text" value={infoValue} readOnly></input>
+        </div>
     );
-
 }
 
 function AccountPageInfos ({ userLoginId, userName, userAddress, userEmail, userPhoneNumber }: AccountInfoProps) {

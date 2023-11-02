@@ -8,6 +8,7 @@ import SignInPage from "./SignInPage";
 import SignUpPage from "./SignUpPage";
 import Account, { AccountType } from "./account/Account";
 import AccountProfile from "./account/AccountProfile";
+import AccountFollowedShops from "./account/AccountFollowedShops";
 
 
 function MainBody() {
@@ -22,6 +23,7 @@ function MainBody() {
 					<Route path="/user" element={<Account accountType={AccountType.Customer} />}>
 						<Route path="/user" element={<Navigate to="/user/profile" />} />
 						<Route path="/user/profile" element={<AccountProfile userLoginId="" userName="" userAddress="" userEmail="" userPhoneNumber="" />} />
+						<Route path="/user/followed_shops" element={<AccountFollowedShops />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>
