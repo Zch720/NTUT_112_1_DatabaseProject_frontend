@@ -20,3 +20,13 @@
 .account-menu-options a {
     margin: 1vh 0;
 }
+
+.account-page-title {
+    margin: 1vh 2vw;
+    margin-top: 3vh;
+    display: table;
+}
+
+.account-page-content {
+    width: 84vw;
+}

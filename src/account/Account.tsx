@@ -35,8 +35,10 @@ export default function Account({ accountType }: AccountProps) {
 
     return (
         <React.Fragment>
-            {accountPage}
-            <Outlet />
+            <div style={{display: "flex"}}>
+                {accountPage}
+                <Outlet />
+            </div>
         </React.Fragment>
     );
 }
