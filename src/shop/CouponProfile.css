@@ -1,0 +1,15 @@
+.coupon-toolbar {
+    margin: 1rem 0;
+    font-size: 1.2rem;
+}
+
+.coupon-toolbar button {
+    height: 2.5rem;
+    padding: 0 1rem;
+    float: right;
+    color: white;
+    background-color: #B89354;
+    font-size: 1.2rem;
+    border: 0;
+    border-radius: 1.25rem;
+}
