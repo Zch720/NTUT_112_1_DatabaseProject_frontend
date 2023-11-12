@@ -24,17 +24,17 @@ function OrderTableHeaderRow() {
 function OrderRow({ order } : { order: OrderType }) {
     return (
         <tr key={order.id}>
-            <td style={{textAlign: "center"}}>{order.id}</td>
-            <td style={{textAlign: "center"}}>{order.date}</td>
-            <td style={{paddingLeft: "3rem", paddingRight: "3rem"}}>{order.content}</td>
-            <td style={{textAlign: "center"}}>{order.cost}</td>
+            <td>{order.id}</td>
+            <td>{order.date}</td>
+            <td>{order.content}</td>
+            <td>{order.cost}</td>
         </tr>
     );
 }
 
 function OrdersTable({ orders }: { orders: OrderType[] }) {
     return (
-        <table style={{margin: "0 2rem"}}>
+        <table>
             <thead>
                 <OrderTableHeaderRow />
             </thead>

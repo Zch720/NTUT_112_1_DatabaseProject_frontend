@@ -14,10 +14,10 @@ thead {
 
 td {
     padding: 1rem 0;
+    text-align: center;
 }
 
 thead td {
-    text-align: center;
     font-weight: bold;
 }
 

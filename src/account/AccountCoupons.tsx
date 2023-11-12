@@ -22,9 +22,9 @@ function OrderTableHeaderRow() {
 function OrderRow({ coupon } : { coupon: CouponType }) {
     return (
         <tr key={coupon.id}>
-            <td style={{textAlign: "center"}}>{coupon.id}</td>
-            <td style={{textAlign: "center"}}>{coupon.startDate + " ~ " + coupon.endDate}</td>
-            <td style={{textAlign: "center"}}>{coupon.description}</td>
+            <td>{coupon.id}</td>
+            <td>{coupon.startDate + " ~ " + coupon.endDate}</td>
+            <td>{coupon.description}</td>
         </tr>
     );
 }
@@ -48,7 +48,7 @@ function CouponsList(props: { coupons: CouponType[], setCouponsOfPage: (page: nu
             <CouponsTable  coupons={props.coupons} />
             {/* TODO: add max page number */}
             <div className="page-chooser-box">
-                <PageChooser maxPage={2} onPageChange={props.setCouponsOfPage} />
+                <PageChooser maxPage={0} onPageChange={props.setCouponsOfPage} />
             </div>
         </div>
     );
