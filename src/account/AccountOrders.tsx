@@ -13,10 +13,10 @@ function AccountPageTitle() {
 function OrderTableHeaderRow() {
     return (
         <tr>
-            <td style={{width: "15vw"}}>訂單編號</td>
-            <td style={{width: "12vw"}}>日期</td>
-            <td style={{width: "30vw"}}>商品內容</td>
-            <td style={{width: "15vw"}}>訂單金額</td>
+            <td style={{width: "16vw"}}>訂單編號</td>
+            <td style={{width: "13vw"}}>日期</td>
+            <td style={{width: "31vw"}}>商品內容</td>
+            <td style={{width: "16vw"}}>訂單金額</td>
         </tr>
     );
 }
@@ -45,6 +45,18 @@ function OrdersTable({ orders }: { orders: OrderType[] }) {
     );
 }
 
+function OrdersList(props : { orders: OrderType[], setOrdersOfPage: (page: number) => void }) {
+    return (
+        <div className="order-list-container">
+            <OrdersTable orders={props.orders} />
+            {/* TODO: add max page number */}
+            <div className="page-chooser-box">
+                <PageChooser maxPage={0} onPageChange={props.setOrdersOfPage} />
+            </div>
+        </div>
+    );
+}
+
 export type OrderType = {
     id: string;
     date: string;
@@ -55,7 +67,7 @@ export type OrderType = {
 export default function AccountOrders() {
     // TODO: set orders
     const [orders, setOrders] = useState<OrderType[]>([]);
-    const getOrdersOfPage = (page: number) => {
+    const setOrdersOfPage = (page: number) => {
         setOrders([]);
     };
 
@@ -63,11 +75,7 @@ export default function AccountOrders() {
         <div className="account-page-content">
             <AccountPageTitle />
             <div className="search-box-container"><SearchBox hasBorder={true} /></div>
-            <OrdersTable orders={orders} />
-            {/* TODO: add max page number */}
-            <div className="page-chooser-box">
-                <PageChooser maxPage={0} onPageChange={getOrdersOfPage} />
-            </div>
+            <OrdersList orders={orders} setOrdersOfPage={setOrdersOfPage} />
         </div>
     );
 }
