@@ -10,10 +10,6 @@ export type PageChooserProps = {
     onPageChange: (page: number) => void;
 };
 
-PageChooser.defaultProps = {
-    maxPage: 1,
-    onPageChange: () => {}
-};
 export default function PageChooser(props: PageChooserProps) {
     const [page, setPage] = useState<number>(props.maxPage > 0 ? 1 : 0);
 
