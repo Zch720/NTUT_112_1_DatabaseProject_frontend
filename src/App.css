@@ -13,7 +13,7 @@ thead {
 }
 
 td {
-    padding: 1rem 0.5rem;
+    padding: 1rem 0;
 }
 
 thead td {
@@ -31,6 +31,10 @@ thead td:last-child {
 
 tbody {
     background-color: #EDEDED;
+}
+
+tbody td {
+    padding: 1rem 0.5rem;
 }
 
 tbody>tr td:first-child {

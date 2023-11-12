@@ -10,6 +10,7 @@ import Account, { AccountType } from "./account/Account";
 import AccountProfile from "./account/AccountProfile";
 import AccountFollowedShops from "./account/AccountFollowedShops";
 import AccountOrders from "./account/AccountOrders";
+import AccountCoupons from "./account/AccountCoupons";
 
 
 function MainBody() {
@@ -26,6 +27,7 @@ function MainBody() {
 						<Route path="/user/profile" element={<AccountProfile userLoginId="" userName="" userAddress="" userEmail="" userPhoneNumber="" />} />
 						<Route path="/user/followed_shops" element={<AccountFollowedShops />} />
 						<Route path="/user/orders" element={<AccountOrders />} />
+						<Route path="/user/coupons" element={<AccountCoupons />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>
