@@ -83,7 +83,7 @@ function ProductCategory({ type, defaultCategories }: { type: string, defaultCat
     );
 }
 
-function CategoryList() {
+function CategoryList({ infoValue }: { infoValue: string }) {
     return (
         <div className="product-category-list">
         </div>
@@ -99,7 +99,7 @@ function CategoryInfo({ infoValue }: { infoValue: string }) {
             <label htmlFor="product-category"></label><br/>
             <input id="prooduct-categories" className={GetProfileInfoState(infoEditing)} type="text" readOnly></input>
             <Collapse isOpened={infoEditing}>
-                <CategoryList />
+                <CategoryList infoValue={infoValue} />
             </Collapse>
         </div>    
     );
