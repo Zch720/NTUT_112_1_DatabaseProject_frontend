@@ -1,0 +1,51 @@
+.product-profile-inputs {
+    width: fit-content;
+}
+
+.product-profile-image {
+    width: 15vw;
+    margin-left: 5vw;
+}
+
+.product-profile-image button {
+    height: 2.5rem;
+    width: 7rem;
+    float: right;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    color: white;
+    background-color: #B89354;
+    border: 0;
+    border-radius: 1.25rem;
+}
+
+.product-profile-image img {
+    width: 15vw;
+    height: 15vw;
+    border: 1px solid black;
+}
+
+.product-category-list {
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+}
+
+.product-category-label {
+    width: 9rem;
+    height: 2.5rem;
+    margin: 0.5rem 0;
+    font-size: 1.2rem;
+    background-color: #E1E3E3;
+    border: 0;
+    border-radius: 1.25rem;
+}
+
+.product-category-label-choosed {
+    width: 9rem;
+    height: 2.5rem;
+    margin: 0.5rem 0;
+    font-size: 1.2rem;
+    background-color: #B89354;
+    border: 0;
+    border-radius: 1.25rem;
+}

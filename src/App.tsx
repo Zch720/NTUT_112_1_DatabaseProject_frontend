@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom";
 import "./App.css";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -13,6 +13,7 @@ import AccountOrders from "./account/customer/AccountOrders";
 import AccountCoupons from "./account/customer/AccountCoupons";
 import ShopProfile from "./account/staff/ShopProfile";
 import ShopProducts from "./account/staff/ShopProducts";
+import ProductProfile from "./shop/ProductProfile";
 
 function MainBody() {
 	return (
@@ -31,6 +32,9 @@ function MainBody() {
 						<Route path="/user/coupons" element={<AccountCoupons />} />
 						<Route path="/user/shop-profile" element={<ShopProfile />} />
 						<Route path="/user/shop-products" element={<ShopProducts />} />
+					</Route>
+					<Route path="/shop" element={<Account />}>
+						<Route path="/shop/product" element={<ProductProfile />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>
