@@ -1,0 +1,15 @@
+.shop-profile-inputs {
+    width: fit-content;
+}
+
+.shop-profile-icon {
+    width: 15vw;
+    margin-left: 5vw;
+}
+
+.shop-profile-icon img {
+    width: 15vw;
+    height: 15vw;
+    border: 1px solid black;
+    border-radius: 10vw;
+}

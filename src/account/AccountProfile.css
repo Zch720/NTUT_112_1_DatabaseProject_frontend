@@ -32,6 +32,16 @@
     cursor: pointer;
 }
 
+.account-profile-info input[type=file] + label::before {
+    content: "修改";
+    font-size: 1.2rem;
+    margin: 0 1.2rem;
+    padding: 0.3rem 1rem;
+    border-radius: 1.5rem;
+    background-color: #ECECEC;
+    cursor: pointer;
+}
+
 .account-profile-info input[type=checkbox]:checked + label::before {
     content: "確認";
     color: white;
@@ -58,6 +68,18 @@
     border-radius: 1.5rem;
     outline: none;
     font-size: 1.2rem;
+}
+
+.account-profile-info textarea.account-profile-info-input {
+    padding: 0.5rem 1rem;
+    height: 10rem;
+    resize: none;
+}
+
+.account-profile-info textarea.account-profile-info-input-editing {
+    padding: 0.5rem 1rem;
+    height: 10rem;
+    resize: none;
 }
 
 .password-editing{
