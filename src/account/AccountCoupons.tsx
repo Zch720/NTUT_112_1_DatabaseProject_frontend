@@ -63,9 +63,9 @@ type CouponType = {
 
 export default function AccountCoupons() {
     // TODO: set coupons
-    const [coupons, setCoupons] = useState<CouponType[]>(getFakeCoupons(1));
+    const [coupons, setCoupons] = useState<CouponType[]>([]);
     const setCouponsOfPage = (page: number) => {
-        setCoupons(getFakeCoupons(page));
+        setCoupons([]);
     };
 
     return (
@@ -76,46 +76,3 @@ export default function AccountCoupons() {
         </div>
     );
 };
-
-const fakeCoupons: CouponType[] = [
-    {
-        id: "A123456789",
-        startDate: "2021/09/01",
-        endDate: "2021/09/30",
-        description: "全站滿額折扣",
-    },
-    {
-        id: "B123456789",
-        startDate: "2021/09/01",
-        endDate: "2021/09/30",
-        description: "全站滿額折扣",
-    },
-    {
-        id: "C123456789",
-        startDate: "2021/09/01",
-        endDate: "2021/09/30",
-        description: "全站滿額折扣",
-    },
-    {
-        id: "D123456789",
-        startDate: "2021/09/01",
-        endDate: "2021/09/30",
-        description: "全站滿額折扣",
-    },
-    {
-        id: "E123456789",
-        startDate: "2021/09/01",
-        endDate: "2021/09/30",
-        description: "全站滿額折扣",
-    },
-    {
-        id: "F123456789",
-        startDate: "2021/09/01",
-        endDate: "2021/09/30",
-        description: "全站滿額折扣",
-    },
-];
-
-function getFakeCoupons(page: number) {
-    return fakeCoupons.slice((page - 1) * 5, page * 5);
-}
