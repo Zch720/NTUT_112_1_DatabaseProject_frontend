@@ -1,0 +1,32 @@
+.shop-list {
+    width: 84vw;
+    display: grid;
+    grid-template-columns: repeat(5, 16vw);
+    margin: 0 auto;
+}
+
+.shop-followed-button {
+    margin: 1rem auto;
+}
+
+.shop-followed-button input[type=checkbox] {
+    display: none;
+}
+
+.shop-followed-button input[type=checkbox] + label::before {
+    content: "取消追蹤";
+    font-size: 1.2rem;
+    color: #B7B7B7;
+    padding: 0.3rem 1rem;
+    border-radius: 1.5rem;
+    border: 2px #B7B7B7 solid;
+    margin: 1rem auto;
+    cursor: pointer;
+}
+
+.shop-followed-button input[type=checkbox]:checked + label::before {
+    content: "追蹤";
+    color: white;
+    border: 2px #B89354 solid;
+    background-color: #B89354;
+}

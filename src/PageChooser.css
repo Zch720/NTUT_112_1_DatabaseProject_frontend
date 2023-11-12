@@ -1,0 +1,18 @@
+.page-chooser-container {
+    height: 1.5rem;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.page-chooser-container * {
+    margin: 0 0.5rem;
+}
+
+.page-chooser-container img {
+    height: 75%;
+    vertical-align: middle;
+}
+
+.page-chooser-container span {
+    line-height: 1.5rem;
+}

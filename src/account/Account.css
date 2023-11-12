@@ -1,0 +1,43 @@
+.account-menu {
+    width: 15vw;
+    margin: 2vh 1vw;
+}
+
+.account-menu-title {
+    margin: 1vh auto;
+    display: table;
+}
+
+.account-menu-options {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 2rem;
+    border-radius: 1.5rem;
+    background-color: #FAF0E3;
+    font-size: 1.4rem;
+}
+
+.account-menu-options a {
+    margin: 1vh 0;
+}
+
+.account-page-title {
+    margin: 1vh 2vw;
+    margin-top: 3vh;
+    display: table;
+}
+
+.account-page-content {
+    width: 84vw;
+}
+
+.search-box-container {
+    height: 1.5rem;
+    width: 15vw;
+    margin: 1.5rem 2vw;
+}
+
+.page-chooser-box {
+    width: 100%;
+    margin: 1rem 0;
+}

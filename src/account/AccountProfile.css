@@ -1,0 +1,69 @@
+.ReactCollapse--collapse {
+    transition: height 500ms;
+}
+
+.account-profile-infos {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3vh;
+    padding: 0 1.5rem;
+}
+
+.account-profile-infos h3{
+    font-size: 1.4rem;
+}
+
+.account-profile-info {
+    font-size: 1.2rem;
+    padding: 0.5rem 0;
+}
+
+.account-profile-info input[type=checkbox] {
+    display: none;
+}
+
+.account-profile-info input[type=checkbox] + label::before {
+    content: "修改";
+    font-size: 1.2rem;
+    margin: 0 1.2rem;
+    padding: 0.3rem 1rem;
+    border-radius: 1.5rem;
+    background-color: #ECECEC;
+    cursor: pointer;
+}
+
+.account-profile-info input[type=checkbox]:checked + label::before {
+    content: "確認";
+    color: white;
+    background-color: #B89354;
+}
+
+.account-profile-info .account-profile-info-input{
+    width: 50vw;
+    height: 3rem;
+    margin: 1rem 0;
+    padding: 0 1rem;
+    border: 2px #E1E3E3 dashed;
+    border-radius: 1.5rem;
+    outline: none;
+    font-size: 1.2rem;
+}
+
+.account-profile-info .account-profile-info-input-editing {
+    width: 50vw;
+    height: 3rem;
+    margin: 1rem 0;
+    padding: 0 1rem;
+    border: 2px  #B89354 solid;
+    border-radius: 1.5rem;
+    outline: none;
+    font-size: 1.2rem;
+}
+
+.password-editing{
+    width: fit-content;
+    padding: 0.5rem 1.5rem;
+    margin-top: 1rem;
+    border: 2px #E1E3E3 dashed;
+    border-radius: 1rem;
+}
