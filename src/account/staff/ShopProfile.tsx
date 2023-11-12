@@ -90,7 +90,7 @@ function ShopProfileIcon(props: { icon: string }) {
     );
 }
 
-function ShopProfileInfos(props: { info: ShopProfileInfos}) {
+function ShopProfiles(props: { info: ShopProfileInfos}) {
     return (
         <div className="account-profile-infos" style={{flexDirection: "row"}}>
             <ShopProfileInputs info={props.info} />
@@ -106,7 +106,7 @@ export default function ShopProfile() {
     return (
         <div className="account-page-content">
             <AccountPageTitle />
-            <ShopProfileInfos info={info} />
+            <ShopProfiles info={info} />
         </div>
     );
 }
