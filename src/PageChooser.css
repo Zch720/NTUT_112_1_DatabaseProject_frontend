@@ -13,6 +13,10 @@
     vertical-align: middle;
 }
 
+.page-chooser-container img:hover {
+    cursor: pointer;
+}
+
 .page-chooser-container span {
     line-height: 1.5rem;
 }
