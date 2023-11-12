@@ -1,0 +1,23 @@
+.shop-coupons-list {
+    width: fit-content;
+}
+
+.shop-coupons-toolbar {
+  display: flex;
+  align-items: center;
+}
+
+.shop-coupons-toolbar select {
+    vertical-align: middle;
+}
+
+.shop-coupons-add-new {
+    height: 2.5rem;
+    margin-left: auto;
+    padding: 0 1rem;
+    border: 0px;
+    border-radius: 1.25rem;
+    background-color: #B89354;
+    color: white;
+    font-size: 1rem;
+}
