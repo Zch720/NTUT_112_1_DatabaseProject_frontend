@@ -1,6 +1,6 @@
-import "../ShopList.css"
+import "../../ShopList.css"
 import "./AccountFollowedShops.css"
-import { ShopItemProps } from "../ShopList";
+import { ShopItemProps } from "../../ShopList";
 
 function AccountPageTitle() {
     return(

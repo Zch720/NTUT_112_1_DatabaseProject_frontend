@@ -6,11 +6,11 @@ import Footer from "./Footer";
 import HomePage from "./HomePage";
 import SignInPage from "./SignInPage";
 import SignUpPage from "./SignUpPage";
-import Account, { AccountType } from "./account/Account";
-import AccountProfile from "./account/AccountProfile";
-import AccountFollowedShops from "./account/AccountFollowedShops";
-import AccountOrders from "./account/AccountOrders";
-import AccountCoupons from "./account/AccountCoupons";
+import Account, { AccountType } from "./account/customer/Account";
+import AccountProfile from "./account/customer/AccountProfile";
+import AccountFollowedShops from "./account/customer/AccountFollowedShops";
+import AccountOrders from "./account/customer/AccountOrders";
+import AccountCoupons from "./account/customer/AccountCoupons";
 
 
 function MainBody() {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./AccountCoupons.css";
-import SearchBox from "../SearchBox";
-import PageChooser from "../PageChooser";
+import SearchBox from "../../SearchBox";
+import PageChooser from "../../PageChooser";
 
 function AccountPageTitle() {
     return(

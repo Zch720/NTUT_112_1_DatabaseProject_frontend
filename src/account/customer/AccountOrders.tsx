@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./AccountOrders.css";
-import "../SearchBox.css";
-import SearchBox from "../SearchBox";
-import PageChooser from "../PageChooser";
+import "../../SearchBox.css";
+import SearchBox from "../../SearchBox";
+import PageChooser from "../../PageChooser";
 
 function AccountPageTitle() {
     return(
