@@ -34,6 +34,16 @@ function OneLineInfo (props: { infoType: string, buttonId: string, infoValue: st
     );
 }
 
+function OneLineReadonlyInfo (props: { infoType: string, infoValue: string }) {
+    const { infoType, infoValue } = props;
+    return(
+        <div className="account-profile-info">
+            {infoType}<br/>
+            <input className="account-profile-info-input" type="text" value={infoValue} readOnly></input>
+        </div>
+    );
+}
+
 function CouponToolBar({ id }: { id: string }) {
     return (
         <div className="coupon-toolbar">
@@ -46,7 +56,7 @@ function CouponToolBar({ id }: { id: string }) {
 function CouponInfos({ coupon }: { coupon: CouponType }) {
     return (
         <React.Fragment>
-            <OneLineInfo infoType={"優惠券類型"} buttonId={"coupon-type"} infoValue={coupon.type}/>
+            <OneLineReadonlyInfo infoType={"優惠券類型"} infoValue={coupon.type}/>
             <OneLineInfo infoType={"優惠券描述"} buttonId={"coupon-description"} infoValue={coupon.descriptoin}/>
             <OneLineInfo infoType={"優惠券開始時間"} buttonId={"coupon-start-time"} infoValue={coupon.startTime}/>
             <OneLineInfo infoType={"優惠券結束時間"} buttonId={"coupon-end-time"} infoValue={coupon.endTime}/>
