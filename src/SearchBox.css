@@ -6,6 +6,10 @@
     display: flex;
 }
 
+.search-box-border {
+    border: 1px solid black;
+}
+
 .search-box img {
     height: 80%;
     padding: 2%;

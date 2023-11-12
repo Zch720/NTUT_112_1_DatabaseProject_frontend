@@ -30,3 +30,9 @@
 .account-page-content {
     width: 84vw;
 }
+
+.search-box-container {
+    height: 1.5rem;
+    width: 15vw;
+    margin: 1.5rem 2vw;
+}
