@@ -53,3 +53,19 @@ tbody>tr td:last-child {
     -ms-user-select: none;
     user-select: none;
 }
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 6rem;
+    height: 2.5rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    background: transparent;
+    background-image: url("/select_arrow.svg");
+    background-repeat: no-repeat;
+    background-position: 100% calc(1.25rem - 12px);
+    background-color: #E1E3E3;
+    border: 0px;
+    border-radius: 1.25rem;
+}

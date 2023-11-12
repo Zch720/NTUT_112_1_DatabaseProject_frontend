@@ -12,6 +12,7 @@ import AccountFollowedShops from "./account/customer/AccountFollowedShops";
 import AccountOrders from "./account/customer/AccountOrders";
 import AccountCoupons from "./account/customer/AccountCoupons";
 import ShopProfile from "./account/staff/ShopProfile";
+import ShopProducts from "./account/staff/ShopProducts";
 
 function MainBody() {
 	return (
@@ -29,6 +30,7 @@ function MainBody() {
 						<Route path="/user/orders" element={<AccountOrders />} />
 						<Route path="/user/coupons" element={<AccountCoupons />} />
 						<Route path="/user/shop-profile" element={<ShopProfile />} />
+						<Route path="/user/shop-products" element={<ShopProducts />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>
