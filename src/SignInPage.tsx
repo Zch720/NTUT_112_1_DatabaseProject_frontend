@@ -1,6 +1,7 @@
+import React from "react";
+import { useCookies } from "react-cookie";
 import "./SignPage.css";
 import "./SignInPage.css"
-import React from "react";
 import SignInController from "./controller/SignInController"
 
 function SignInOption() {
@@ -13,6 +14,12 @@ function SignInOption() {
 }
 
 function SignInInputs() {
+    const [cookies, setCookie, removeCookie] = useCookies(["accountId"]);
+
+    const setCookiesAccountId = (accountId: string) => {
+        setCookie("accountId", accountId, { path: "/" });
+    }
+
     return (
         <div className="sign-page-inputs">
             <label className="sign-page-input">
@@ -23,7 +30,7 @@ function SignInInputs() {
                 密碼<br/>
                 <input type="password" id="password-input"/>
             </label>
-            <button type="submit" onClick={SignIn}>登入</button>
+            <button type="submit" onClick={() => SignIn(setCookiesAccountId)}>登入</button>
         </div>
     );
 }
@@ -37,10 +44,10 @@ export default function SignInPage() {
     );
 }
 
-async function SignIn() {
+async function SignIn(setCookiesAccountId: (accountId: string) => void) {
     const userAccount = (document.getElementById("user-account-input") as HTMLInputElement).value;
     const password = (document.getElementById("password-input") as HTMLInputElement).value;
-    var success = await SignInController(userAccount, password);
+    var success = await SignInController(userAccount, password, setCookiesAccountId);
     if (success) {
         location.href = "/home#";
     }

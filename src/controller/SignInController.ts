@@ -1,14 +1,7 @@
 import axios from "axios";
 import { backendUrl } from "./config.json";
-import { useCookies } from "react-cookie";
 
-export default async function SignIn(userAccount: string, password: string): Promise<Boolean> {
-    const [cookies, setCookie, removeCookie] = useCookies(["accountId"]);
-
-    const setCookieAccountId = (accountId: string) => {
-        setCookie("accountId", accountId, { path: "/" });
-    };
-
+export default async function SignIn(userAccount: string, password: string, setCookiesAccountId: (accounId: string) => void): Promise<Boolean> {
     const body = {
         userAccount: userAccount,
         password: password
@@ -20,7 +13,7 @@ export default async function SignIn(userAccount: string, password: string): Pro
     })
 
     if (response.status == 200) {
-        setCookieAccountId(response.data);
+        setCookiesAccountId(response.data);
         return true;
     }
     return false;
