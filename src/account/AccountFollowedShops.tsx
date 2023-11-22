@@ -1,6 +1,6 @@
 import "../ShopList.css"
 import "./AccountFollowedShops.css"
-import { ShopItemProps } from "../ShopList";
+import { ShopListData } from "../mapper/ShopMapper";
 
 function AccountPageTitle() {
     return(
@@ -8,18 +8,14 @@ function AccountPageTitle() {
     );
 }
 
-function ShopItem({ shopUrl, image, shopName }: ShopItemProps) {
+function ShopItem({ shopId, shopIcon, shopName }: ShopListData) {
     return (
         <div className="shop-list-item">
-            <a href={shopUrl}><img src={image} /></a>
-            <a href={shopUrl}><span>{shopName}</span></a>
+            <a href={`/shop?id=${shopId}`}><img src={shopIcon} /></a>
+            <a href={`/shop?id=${shopId}`}><span>{shopName}</span></a>
             {ShopFollowedButton(shopName + "-followed-button")}
         </div>
     );
-}
-
-type ShopListProps = {
-    shops: ShopItemProps[];
 }
 
 function ShopFollowedButton (buttonId: string) {
@@ -31,11 +27,11 @@ function ShopFollowedButton (buttonId: string) {
     );
 }
 
-function FollowedShopList ({ shops }: ShopListProps) {
+function FollowedShopList ({ shops }: { shops: ShopListData[] }) {
     return(
         <div className="shop-list">
             {shops.map((shop) => (
-                <ShopItem shopUrl={shop.shopUrl} image={shop.image} shopName={shop.shopName} />
+                <ShopItem shopId={shop.shopId} shopIcon={shop.shopIcon} shopName={shop.shopName} />
             ))}
         </div>
     );
