@@ -16,6 +16,7 @@ import ShopProducts from "./account/staff/ShopProducts";
 import ShopCoupons from "./account/staff/ShopCoupons";
 import ProductProfile from "./shop/ProductProfile";
 import CouponProfile from "./shop/CouponProfile";
+import SellReport from "./shop/SellReport";
 
 function MainBody() {
 	return (
@@ -35,6 +36,7 @@ function MainBody() {
 						<Route path="/user/shop-profile" element={<ShopProfile />} />
 						<Route path="/user/shop-products" element={<ShopProducts />} />
 						<Route path="/user/shop-coupons" element={<ShopCoupons />} />
+						<Route path="/user/shop-report" element={<SellReport />} />
 					</Route>
 					<Route path="/shop" element={<Account />}>
 						<Route path="/shop/product" element={<ProductProfile />} />
