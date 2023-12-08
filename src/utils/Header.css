@@ -1,11 +1,18 @@
+:root {
+    --header-height: calc(7.5vh + 2.8rem);
+    --half-header-height: calc(var(--header-height) / 2);
+}
+
 header {
-    height: calc(7.5vh + 2.8rem);
+    height: var(--header-height);
     display: flex;
     flex-direction: row;
     background-color: #A4895C;
 }
 
 #header-logo {
+    width: var(--header-height);
+    height: var(--header-height);
     padding: 0 4% 0 2%;
 }
 
@@ -23,23 +30,26 @@ header {
     justify-content: flex-end;
 }
 
-#header-search-box {
+.header-search-box {
     height: 50%;
     padding: 1%;
 }
 
-#user-tools-bar a {
-    height: 50%;
-    padding: 1%;
+.user-tool-bar-item {
+    width: var(--half-header-height);
+    height: var(--half-header-height);
 }
 
-#user-tools-bar a img {
+.user-tool-bar-item>a {
     height: 100%;
     padding: 1%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#account-icon {
-    height: 50%;
+.user-tool-bar-item>a>img {
+    height: 70%;
     padding: 1%;
 }
 

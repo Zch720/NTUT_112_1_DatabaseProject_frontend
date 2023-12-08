@@ -12,9 +12,17 @@ function Logo() {
 function ToolsBar() {
     return (
         <div id="user-tools-bar">
-            <div id="header-search-box"><SearchBox /></div>
-            <a href="/user/signin"><img id="account-icon" src={ACCOUNT_ICON} /></a>
-            <a href="/shopping-cart"><img src={SHOPPING_CART_ICON} /></a>
+            <div className="header-search-box"><SearchBox /></div>
+            <div className="user-tool-bar-item">
+                <a href="/user/signin">
+                    <img src={ACCOUNT_ICON} />
+                </a>
+            </div>
+            <div className="user-tool-bar-item" style={{marginRight: "0.5vw"}}>
+                <a href="/shopping-cart">
+                    <img src={SHOPPING_CART_ICON} />
+                </a>
+            </div>
         </div>
     );
 }
