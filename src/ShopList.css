@@ -21,8 +21,14 @@
     border-radius: 50%;
 }
 
+.shop-list-item a {
+    width: fit-content;
+    margin: 0 auto;
+}
+
 .shop-list-item span {
-    width: 12vw;
+    width: fit-content;
+    max-width: 12vw;
     display: table;
     margin: 0 auto;
     font-size: 1.2rem;

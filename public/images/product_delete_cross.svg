@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60">
+  <!-- 左上到右下的線 -->
+  <line x1="18" y1="18" x2="42" y2="42" stroke="white" stroke-width="9"/>
+  <!-- 左下到右上的線 -->
+  <line x1="18" y1="42" x2="42" y2="18" stroke="white" stroke-width="9"/>
+  <!-- 左上角的圓 -->
+  <circle cx="18" cy="18" r="4.5" fill="white"/>
+  <!-- 右上角的圓 -->
+  <circle cx="42" cy="18" r="4.5" fill="white"/>
+  <!-- 左下角的圓 -->
+  <circle cx="18" cy="42" r="4.5" fill="white"/>
+  <!-- 右下角的圓 -->
+  <circle cx="42" cy="42" r="4.5" fill="white"/>
+</svg>

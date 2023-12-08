@@ -54,7 +54,7 @@ function DescriptionInfo(props: { infoType: string, buttonId: string, infoValue:
 
 function setIconImage() {
     const input = document.getElementById("shop-icon") as HTMLInputElement;
-    const icon = document.getElementById("shop-profile-icon") as HTMLImageElement;
+    const icon = document.getElementById("shop-profile-icon-img") as HTMLImageElement;
     
     if (!input.files || !input.files[0]) return;
     icon.src = URL.createObjectURL(input.files[0]);
@@ -85,7 +85,7 @@ function ShopProfileInputs(props: { info: ShopProfileInfos }) {
 function ShopProfileIcon(props: { icon: string }) {
     return (
         <div className="shop-profile-icon">
-            <img id="shop-profile-icon" src={props.icon} />
+            <img id="shop-profile-icon-img" src={props.icon} />
         </div>
     );
 }

@@ -32,7 +32,7 @@
     cursor: pointer;
 }
 
-.account-profile-info input[type=file] + label::before {
+/* .account-profile-info input[type=file] + label::before {
     content: "修改";
     font-size: 1.2rem;
     margin: 0 1.2rem;
@@ -40,7 +40,7 @@
     border-radius: 1.5rem;
     background-color: #ECECEC;
     cursor: pointer;
-}
+} */
 
 .account-profile-info input[type=checkbox]:checked + label::before {
     content: "確認";
