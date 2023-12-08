@@ -13,7 +13,9 @@ SearchBox.defaultProps = searchBoxDefaultProps;
 export default function SearchBox({ hasBorder }: SearchBoxProps) {
     return (
         <div className={"search-box" + (hasBorder ? " search-box-border" : "")}>
-            <img src={SEARCH_ICON}/>
+            <div className="search-box-icon-container">
+                <img src={SEARCH_ICON}/>
+            </div>
             <input type="search"/>
         </div>
     );
