@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom";
 import "./App.css";
-import Header from "./Header";
-import Footer from "./Footer";
-import HomePage from "./HomePage";
-import SignInPage from "./SignInPage";
-import SignUpPage from "./SignUpPage";
+import Header from "./utils/Header";
+import Footer from "./utils/Footer";
+import HomePage from "./home/HomePage";
+import SignInPage from "./account/signin/SignInPage";
+import SignUpPage from "./account/signup/SignUpPage";
 import Account from "./account/Account";
 import AccountProfile from "./account/AccountProfile";
 import AccountFollowedShops from "./account/customer/AccountFollowedShops";

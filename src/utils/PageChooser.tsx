@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import "./PageChooser.css";
-import LEFT_ARROW from "./assets/left_icon.png";
-import DOUBLE_LEFT_ARROW from "./assets/double_left_icon.png";
-import RIGHT_ARROW from "./assets/right_icon.png";
-import DOUBLE_RIGHT_ARROW from "./assets/double_right_icon.png";
+import LEFT_ARROW from "../assets/left_icon.png";
+import DOUBLE_LEFT_ARROW from "../assets/double_left_icon.png";
+import RIGHT_ARROW from "../assets/right_icon.png";
+import DOUBLE_RIGHT_ARROW from "../assets/double_right_icon.png";
 
 export type PageChooserProps = {
     maxPage: number;

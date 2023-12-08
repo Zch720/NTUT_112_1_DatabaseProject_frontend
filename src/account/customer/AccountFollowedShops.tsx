@@ -1,4 +1,4 @@
-import "../../ShopList.css"
+import "../../utils/list_of_entities/ShopList.css"
 import "./AccountFollowedShops.css"
 import { ShopListData } from "../../mapper/ShopMapper";
 

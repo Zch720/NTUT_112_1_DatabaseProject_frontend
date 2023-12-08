@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Collapse } from "react-collapse";
 import "../account/AccountProfile.css";
 import "./ProductProfile.css";
-import "../PageChooser";
+import "../utils/PageChooser";
 
 type ProductInfos = {
     name: string;

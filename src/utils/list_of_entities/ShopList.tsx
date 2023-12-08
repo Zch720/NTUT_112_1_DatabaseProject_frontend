@@ -1,5 +1,5 @@
 import "./ShopList.css"
-import { ShopListData } from "./mapper/ShopMapper";
+import { ShopListData } from "../../mapper/ShopMapper";
 
 function ShopItem({ shopId, shopIcon, shopName }: ShopListData) {
     return (

@@ -1,8 +1,8 @@
 import React from "react";
 import { useCookies } from "react-cookie";
-import "./SignPage.css";
+import "../SignPage.css";
 import "./SignInPage.css"
-import SignInController from "./controller/SignInController"
+import SignInController from "../../controller/SignInController"
 
 function SignInOption() {
     return (

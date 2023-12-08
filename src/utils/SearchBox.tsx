@@ -1,4 +1,4 @@
-import SEARCH_ICON from "./assets/search_icon.png"
+import SEARCH_ICON from "../assets/search_icon.png"
 import "./SearchBox.css"
 
 export type SearchBoxProps = {

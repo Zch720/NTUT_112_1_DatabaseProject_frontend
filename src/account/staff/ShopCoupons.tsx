@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./ShopCoupons.css";
 import ShopProducts from "./ShopProducts";
-import PageChooser from "../../PageChooser";
-import SearchBox from "../../SearchBox";
+import PageChooser from "../../utils/PageChooser";
+import SearchBox from "../../utils/SearchBox";
 
 type CouponType = {
     id: string;

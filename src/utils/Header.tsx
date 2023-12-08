@@ -1,7 +1,7 @@
 import "./Header.css"
 import SearchBox from "./SearchBox";
-import ACCOUNT_ICON from "./assets/account_icon.png"
-import SHOPPING_CART_ICON from "./assets/shopping_cart_icon.png"
+import ACCOUNT_ICON from "../assets/account_icon.png"
+import SHOPPING_CART_ICON from "../assets/shopping_cart_icon.png"
 
 function Logo() {
     return (

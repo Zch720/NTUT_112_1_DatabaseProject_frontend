@@ -1,4 +1,4 @@
-import "./SignPage.css";
+import "../SignPage.css";
 import "./SignUpPage.css"
 import React from "react";
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./ShopProducts.css"
-import SearchBox from "../../SearchBox";
-import PageChooser from "../../PageChooser";
+import SearchBox from "../../utils/SearchBox";
+import PageChooser from "../../utils/PageChooser";
 
 type ProductType = {
     name: string;

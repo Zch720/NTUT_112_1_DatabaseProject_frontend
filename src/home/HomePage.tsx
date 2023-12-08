@@ -1,8 +1,8 @@
 import "./HomePage.css";
 import React from "react";
 import Banner from "./Banner";
-import ShopList from "./ShopList";
-import { ShopItemProps } from "./ShopList";
+import ShopList from "../utils/list_of_entities/ShopList";
+import { ShopListData } from "../mapper/ShopMapper"
 
 function HomePageAboutUs() {
     return (
