@@ -1,29 +1,20 @@
 import "./ShopList.css"
+import { ShopListData } from "./mapper/ShopMapper";
 
-export type ShopItemProps = {
-    shopUrl: string;
-    image: string;
-    shopName: string;
-}
-
-function ShopItem({ shopUrl, image, shopName }: ShopItemProps) {
+function ShopItem({ shopId, shopIcon, shopName }: ShopListData) {
     return (
         <div className="shop-list-item">
-            <a href={shopUrl}><img src={image} /></a>
-            <a href={shopUrl}><span>{shopName}</span></a>
+            <a href={`/shop?id=${shopId}`}><img src={shopIcon} /></a>
+            <a href={`/shop?id=${shopId}`}><span>{shopName}</span></a>
         </div>
     );
 }
 
-type ShopListProps = {
-    shops: ShopItemProps[];
-}
-
-export default function ShopList({ shops }: ShopListProps) {
+export default function ShopList({ shops }: { shops: ShopListData[] }) {
     return (
         <div className="shop-list">
             {shops.map((shop) => (
-                <ShopItem shopUrl={shop.shopUrl} image={shop.image} shopName={shop.shopName} />
+                <ShopItem shopId={shop.shopId} shopIcon={shop.shopIcon} shopName={shop.shopName} />
             ))}
         </div>
     );
