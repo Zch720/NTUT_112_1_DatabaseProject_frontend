@@ -34,14 +34,16 @@ function OrderRow({ order } : { order: OrderType }) {
 
 function OrdersTable({ orders }: { orders: OrderType[] }) {
     return (
-        <table>
-            <thead>
-                <OrderTableHeaderRow />
-            </thead>
-            <tbody>
-                {orders.map((order) => <OrderRow order={order} />)}
-            </tbody>
-        </table>
+        <div className="eletable">
+            <table>
+                <thead>
+                    <OrderTableHeaderRow />
+                </thead>
+                <tbody>
+                    {orders.map((order) => <OrderRow order={order} />)}
+                </tbody>
+            </table>
+        </div>
     );
 }
 
@@ -74,7 +76,7 @@ export default function AccountOrders() {
     return (
         <div className="account-page-content">
             <AccountPageTitle />
-            <div className="search-box-container"><SearchBox hasBorder={true} /></div>
+            <div className="default-search-box-container"><SearchBox hasBorder={true} /></div>
             <OrdersList orders={orders} setOrdersOfPage={setOrdersOfPage} />
         </div>
     );

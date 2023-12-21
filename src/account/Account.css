@@ -22,13 +22,14 @@
 }
 
 .account-page-title {
-    margin: 1vh 2vw;
+    margin: 1vh 0;
     margin-top: 3vh;
     display: table;
 }
 
 .account-page-content {
     width: 84vw;
+    padding: 0 2vw;
 }
 
 .page-chooser-box {

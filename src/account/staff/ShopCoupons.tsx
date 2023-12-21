@@ -20,7 +20,7 @@ function AccountPageTitle() {
 function CouponsListToolBar() {
     return (
         <div className="shop-coupons-toolbar">
-            <div className="search-box-container">
+            <div>
                 <SearchBox hasBorder={true} />
             </div>
             <button className="shop-coupons-add-new">新增優惠券</button>
@@ -50,14 +50,16 @@ function CouponRow({ coupon } : { coupon: CouponType }) {
 
 function CouponsTable({ coupons }: { coupons: CouponType[] }) {
     return (
-        <table>
-            <thead>
-                <CouponTableHeaderRow />
-            </thead>
-            <tbody>
-                {coupons.map((coupon) => <CouponRow coupon={coupon} />)}
-            </tbody>
-        </table>
+        <div className="eletable">
+            <table>
+                <thead>
+                    <CouponTableHeaderRow />
+                </thead>
+                <tbody>
+                    {coupons.map((coupon) => <CouponRow coupon={coupon} />)}
+                </tbody>
+            </table>
+        </div>
     );
 }
 

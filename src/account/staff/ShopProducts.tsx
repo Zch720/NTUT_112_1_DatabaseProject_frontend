@@ -28,7 +28,7 @@ function ProductCategorySelector() {
 function ProductsListToolbar() {
     return (
         <div className="shop-products-toolbar">
-            <div className="search-box-container">
+            <div style={{ marginRight: "0.5vw" }}>
                 <SearchBox hasBorder={true} />
             </div>
             <ProductCategorySelector />
@@ -59,14 +59,16 @@ function ProductRow({ product }: { product: ProductType }) {
 
 function ProductsTable({ products }: { products: ProductType[] }) {
     return (
-        <table>
-            <thead>
-                <ProductTableHeaderRow />
-            </thead>
-            <tbody>
-                {products.map((product) => <ProductRow product={product} />)}
-            </tbody>
-        </table>
+        <div className="eletable">
+            <table>
+                <thead>
+                    <ProductTableHeaderRow />
+                </thead>
+                <tbody>
+                    {products.map((product) => <ProductRow product={product} />)}
+                </tbody>
+            </table>
+        </div>
     );
 }
 

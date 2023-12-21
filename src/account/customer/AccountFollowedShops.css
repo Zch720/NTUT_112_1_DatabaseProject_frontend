@@ -1,5 +1,5 @@
 .shop-list {
-    width: 84vw;
+    width: 80vw;
     display: grid;
     grid-template-columns: repeat(5, 16vw);
     margin: 0 auto;

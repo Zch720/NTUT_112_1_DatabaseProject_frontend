@@ -58,7 +58,7 @@ export default function Account() {
     );
 }
 
-function getFakeAccountType(type: string): AccountType {
+function getFakeAccountType(type: "customer" | "staff" | "admin"): AccountType {
     switch (type) {
         case "customer":
             return AccountType.Customer;

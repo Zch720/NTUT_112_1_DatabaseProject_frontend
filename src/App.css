@@ -3,45 +3,45 @@ main {
     overflow: hidden;
 }
 
-table {
+.eletable table {
     border-collapse: separate;
     border-spacing: 0 0.7rem;
 }
 
-thead {
+.eletable thead {
     background-color: #D4BD98;
 }
 
-td {
+.eletable td {
     padding: 1rem 0;
     text-align: center;
 }
 
-thead td {
+.eletable thead td {
     font-weight: bold;
 }
 
-thead td:first-child {
+.eletable thead td:first-child {
     border-radius: 1rem 0 0 1rem;
 }
 
-thead td:last-child {
+.eletable thead td:last-child {
     border-radius: 0 1rem 1rem 0;
 }
 
-tbody {
+.eletable tbody {
     background-color: #EDEDED;
 }
 
-tbody td {
+.eletable tbody td {
     padding: 1rem 0.5rem;
 }
 
-tbody>tr td:first-child {
+.eletable tbody>tr td:first-child {
     border-radius: 1rem 0 0 1rem;
 }
 
-tbody>tr td:last-child {
+.eletable tbody>tr td:last-child {
     border-radius: 0 1rem 1rem 0;
 }
 

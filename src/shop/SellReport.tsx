@@ -243,7 +243,10 @@ function ReportChart({ inputDatas }: { inputDatas: ReportData[] }) {
         setDatas(inputDatas);
     }, [inputDatas]);
 
+    console.log(datas);
+
     return (
+        datas.length === 0 ? <></> :
         <BarChart
             margin={{
                 left: datas.map(data => GetTextWidth(data.name)).sort((a, b) => b - a)[0] + 30
@@ -294,19 +297,21 @@ function ReportTable({ inputDatas }: { inputDatas: ReportData[] }) {
     }, [inputDatas]);
 
     return (
-        <table>
-            <thead>
-                <ReportTableHeaderRow />
-            </thead>
-            <tbody>
-                {datas.map((report, idx) => <ReportRow key={`report-row-${idx + 1}`} index={idx + 1} data={report} />)}
-            </tbody>
-        </table>
+        <div className="eletable">
+            <table>
+                <thead>
+                    <ReportTableHeaderRow />
+                </thead>
+                <tbody>
+                    {datas.map((report, idx) => <ReportRow key={`report-row-${idx + 1}`} index={idx + 1} data={report} />)}
+                </tbody>
+            </table>
+        </div>
     );
 }
 
 export default function SellReport() {
-    const [datas, setDatas] = useState<ReportData[]>(fakeReportData);
+    const [datas, setDatas] = useState<ReportData[]>([]);
 
     const orderRuleChange = (order: string) => {
         switch (order) {
@@ -336,30 +341,3 @@ export default function SellReport() {
         </div>
     );
 }
-
-const fakeReportData: ReportData[] = [
-    {
-        name: "巧克力夾心",
-        amount: 3,
-        income: 360,
-        sellPersentage: 8.0
-    },
-    {
-        name: "特級焦糖格紋餅乾",
-        amount: 9,
-        income: 2997,
-        sellPersentage: 66.0
-    },
-    {
-        name: "好好吃餅乾",
-        amount: 1,
-        income: 1200,
-        sellPersentage: 26.0
-    },
-    {
-        name: "超難吃餅乾",
-        amount: 1,
-        income: 0,
-        sellPersentage: 0.0
-    }
-]

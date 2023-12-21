@@ -31,14 +31,16 @@ function OrderRow({ coupon } : { coupon: CouponType }) {
 
 function CouponsTable({ coupons }: { coupons: CouponType[] }) {
     return (
-        <table>
-            <thead>
-                <OrderTableHeaderRow />
-            </thead>
-            <tbody>
-                {coupons.map((coupon) => <OrderRow coupon={coupon} />)}
-            </tbody>
-        </table>
+        <div className="eletable">
+            <table>
+                <thead>
+                    <OrderTableHeaderRow />
+                </thead>
+                <tbody>
+                    {coupons.map((coupon) => <OrderRow coupon={coupon} />)}
+                </tbody>
+            </table>
+        </div>
     );
 }
 
@@ -71,7 +73,7 @@ export default function AccountCoupons() {
     return (
         <div className="account-page-content">
             <AccountPageTitle />
-            <div className="search-box-container"><SearchBox hasBorder={true} /></div>
+            <div className="default-search-box-container"><SearchBox hasBorder={true} /></div>
             <CouponsList coupons={coupons} setCouponsOfPage={setCouponsOfPage} />
         </div>
     );
