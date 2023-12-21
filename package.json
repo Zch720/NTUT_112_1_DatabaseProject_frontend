@@ -12,8 +12,14 @@
     "cov-test": "jest --coverage"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.15.1",
+    "@mui/styles": "^5.15.1",
+    "@mui/x-charts": "^6.18.3",
     "@types/react-collapse": "^5.0.3",
     "axios": "^1.6.0",
+    "exceljs": "^4.4.0",
     "mkcert": "^3.0.0",
     "react": "^18.2.0",
     "react-collapse": "^5.1.1",

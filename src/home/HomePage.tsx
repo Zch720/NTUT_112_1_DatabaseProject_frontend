@@ -26,7 +26,7 @@ function HomePageRecommendedShops() {
         <React.Fragment>
             <h3 className="home-page-title">推薦商店</h3>
             {/* TODO: add shop list */}
-            <ShopList shops={[]} />
+            <ShopList shops={fakeShops} />
         </React.Fragment>
     );
 }
@@ -40,3 +40,41 @@ export default function HomePage() {
         </React.Fragment>
     );
 }
+
+const fakeShops: ShopListData[] = [
+    {
+        shopId: "",
+        shopIcon: "logo.PNG",
+        shopName: "shop",
+    },
+    {
+        shopId: "",
+        shopIcon: "logo.PNG",
+        shopName: "shop",
+    },
+    {
+        shopId: "",
+        shopIcon: "logo.PNG",
+        shopName: "shop",
+    },
+    {
+        shopId: "",
+        shopIcon: "logo.PNG",
+        shopName: "shop",
+    },
+    {
+        shopId: "",
+        shopIcon: "logo.PNG",
+        shopName: "shop",
+    },
+    {
+        shopId: "",
+        shopIcon: "logo.PNG",
+        shopName: "shop",
+    },
+    {
+        shopId: "",
+        shopIcon: "logo.PNG",
+        shopName: "shop",
+    }
+];
