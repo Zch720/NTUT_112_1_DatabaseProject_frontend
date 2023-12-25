@@ -66,8 +66,14 @@
 }
 
 .images-viewer-index {
+    height: 8%;
     position: absolute;
     bottom: 3%;
     left: 50%;
     transform: translateX(-50%);
+}
+
+.images-viewer-image-dot {
+    height: 100%;
+    aspect-ratio: 1;
 }
