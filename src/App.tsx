@@ -23,6 +23,8 @@ import ShopManage from "./account/admin/ShopManage";
 import ShopManagementInfo from "./account/admin/ShopInfo";
 import ShopProductManagementInfo from "./account/admin/ShopProductInfo";
 import ShopStaffManagementInfo from "./account/admin/ShopStaffInfo";
+import ProductsPage from "./product/ProductsPage";
+import AllProduct from "./product/AllProduct";
 
 function MainBody() {
 	return (
@@ -31,6 +33,9 @@ function MainBody() {
 				<Routes>
 					<Route path="/" element={<Navigate to="/home" />} />
 					<Route path="/home" element={<HomePage />} />
+					<Route path="/products" element={<ProductsPage />}>
+						<Route path="/products" element={<AllProduct />} />
+					</Route>
 					<Route path="/user/signin" element={<SignInPage />} />
 					<Route path="/user/signup" element={<SignUpPage />} />
 					<Route path="/user" element={<Account />}>
