@@ -1,0 +1,56 @@
+.account-info-tool-bar {
+    display: flex;
+    justify-content: end;
+}
+
+.account-info-tool-bar button {
+    border: 0;
+    background: #B89354;
+    color: white;
+    font-size: 1.2rem;
+    height: 2.5rem;
+    padding: 0 1rem;
+    border-radius: 1.25rem;
+}
+
+.account-infos {
+    font-size: 1.2rem;
+}
+
+.account-info {
+    display: flex;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.account-info label {
+    width: 5rem;
+    text-align: right;
+    padding-right: 1rem;
+}
+
+.account-info div {
+    width: calc(100% - 8rem);
+    height: 3rem;
+    border: 2px #E1E3E3 dashed;
+    padding: 0 1rem;
+    border-radius: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.account-orders-info {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+}
+
+.account-orders-info label {
+    width: 5rem;
+    text-align: right;
+    padding-right: 1rem;
+}
+
+.account-orders-info table {
+    width: 100%;
+}

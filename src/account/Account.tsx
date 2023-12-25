@@ -14,7 +14,7 @@ function CustomerAccount() {
             <h3 className="account-menu-title">帳戶</h3>
             <div className="account-menu-options">
                 <a href="/user/profile#">帳戶資訊</a>
-                <a href="/user/followed_shops#">追蹤商店</a>
+                <a href="/user/followed-shops#">追蹤商店</a>
                 <a href="/user/orders#">訂單紀錄</a>
                 <a href="/user/coupons#">優惠券</a>
             </div>
@@ -37,15 +37,30 @@ function StaffAccount() {
     );
 }
 
+function AdminAccount() {
+    return (
+        <div className="account-menu">
+            <h3 className="account-menu-title">帳戶</h3>
+            <div className="account-menu-options">
+                <a href="/user/profile#">帳戶資訊</a>
+                <a href="/user/admin/account-manage#">一般帳戶管理</a>
+                <a href="/user/admin/shop-manage#">商品管理</a>
+            </div>
+        </div>
+    );
+}
+
 export default function Account() {
     // TODO: get account type from server
-    let accountType: AccountType = getFakeAccountType("staff");
+    let accountType: AccountType = getFakeAccountType("admin");
     let accountPage: JSX.Element = <></>;
 
     if (accountType === AccountType.Customer) {
         accountPage = CustomerAccount();
     } else if (accountType == AccountType.Staff) {
         accountPage = StaffAccount();
+    } else if (accountType == AccountType.Admin) {
+        accountPage = AdminAccount();
     }
 
     return (

@@ -311,7 +311,14 @@ function ReportTable({ inputDatas }: { inputDatas: ReportData[] }) {
 }
 
 export default function SellReport() {
-    const [datas, setDatas] = useState<ReportData[]>([]);
+    const [datas, setDatas] = useState<ReportData[]>([
+        {
+            name: "商品1111111111",
+            amount: 100,
+            income: 10000,
+            sellPersentage: 50
+        }
+    ]);
 
     const orderRuleChange = (order: string) => {
         switch (order) {
