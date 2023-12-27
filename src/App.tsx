@@ -27,6 +27,7 @@ import ProductsPage from "./product/ProductsPage";
 import AllProduct from "./product/AllProduct";
 import ShopsPage from "./shop/ShopsPage";
 import ShopPage from "./shop/ShopPage";
+import ProductPage from "./product/ProductPage";
 
 function MainBody() {
 	return (
@@ -63,6 +64,7 @@ function MainBody() {
 					<Route path="/shop" element={<ShopPage />}>
 						<Route path="/shop" element={<AllProduct />} />
 					</Route>
+					<Route path="/product" element={<ProductPage />} />
 				</Routes>
 			</BrowserRouter>
 		</main>
