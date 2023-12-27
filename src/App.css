@@ -77,3 +77,7 @@ select {
 .w-flex-g1 {
     flex-grow: 1;
 }
+
+.w-100-per {
+    width: 100%;
+}
