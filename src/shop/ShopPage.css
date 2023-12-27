@@ -1,0 +1,52 @@
+.shop-page-banner {
+    display: flex;
+    padding: 1rem 5rem;
+    background-color: #FAF0E3;
+}
+
+.shop-page-banner-logo {
+    display: flex;
+    height: 18rem;
+    width: 12rem;
+    margin-right: 4rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.shop-page-banner-logo img {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+}
+
+.shop-page-banner-info {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.shop-page-banner-info h1 {
+    color: #919191;
+    margin-block-start: 0.5rem;
+    margin-block-end: 0.5rem;
+}
+
+.shop-page-banner-follow button {
+    width: 6.5rem;
+    height: 2.5rem;
+    margin-top: 0.5rem;
+    color: white;
+    font-size: 1rem;
+    padding: 0 1.2rem;
+    border: 0px;
+    border-radius: 1.25rem;
+}
+
+.shop-page-banner-follow #follow-button {
+    background-color: #7F4721;
+}
+
+.shop-page-banner-follow #unfollow-button {
+    background-color: #B89354;
+}

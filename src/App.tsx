@@ -26,6 +26,7 @@ import ShopStaffManagementInfo from "./account/admin/ShopStaffInfo";
 import ProductsPage from "./product/ProductsPage";
 import AllProduct from "./product/AllProduct";
 import ShopsPage from "./shop/ShopsPage";
+import ShopPage from "./shop/ShopPage";
 
 function MainBody() {
 	return (
@@ -48,7 +49,9 @@ function MainBody() {
 						<Route path="/user/coupons" element={<AccountCoupons />} />
 						<Route path="/user/shop-profile" element={<ShopProfile />} />
 						<Route path="/user/shop-products" element={<ShopProducts />} />
+						<Route path="/user/shop/product" element={<ProductProfile />} />
 						<Route path="/user/shop-coupons" element={<ShopCoupons />} />
+						<Route path="/user/shop/coupon" element={<CouponProfile />} />
 						<Route path="/user/shop-report" element={<SellReport />} />
 						<Route path="/user/admin/account-manage" element={<AccountManage />} />
 						<Route path="/user/admin/account-info" element={<AccountManagementInfo />} />
@@ -57,10 +60,7 @@ function MainBody() {
 						<Route path="/user/admin/shop-product-info" element={<ShopProductManagementInfo />} />
 						<Route path="/user/admin/shop-staff-info" element={<ShopStaffManagementInfo />} />
 					</Route>
-					<Route path="/shop" element={<Account />}>
-						<Route path="/shop/product" element={<ProductProfile />} />
-						<Route path="/shop/coupon" element={<CouponProfile />} />
-					</Route>
+					<Route path="/shop" element={<ShopPage />} />
 				</Routes>
 			</BrowserRouter>
 		</main>
