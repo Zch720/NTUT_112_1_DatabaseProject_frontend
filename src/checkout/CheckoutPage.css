@@ -1,0 +1,152 @@
+.checkout-page-container {
+    font-size: 1.2rem;
+    padding: 1rem 2rem;
+}
+
+.label-value-pair {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 0;
+}
+
+.line-info {
+    margin: 0.5rem 0;
+}
+
+.line-info-value {
+    width: calc(100% - 2rem);
+    height: 2.5rem;
+    padding: 0 1rem;
+    font-size: 1.2rem;
+    border:1px solid #B89354;
+    margin-top: 0.3rem;
+    border-radius: 1.5rem;
+}
+
+.checkout-page-header {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.checkout-page-header img {
+    width: 1.6rem;
+    height: 1.6rem;
+}
+
+.checkout-page-infos {
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkout-page-products, .checkout-page-order-infos {
+    margin-top: 1rem;
+    width: 48%;
+}
+
+.checkout-page-products-header {
+    display: flex;
+    align-items: center;
+}
+
+.checkout-page-shops-container {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 2rem);
+    border: 1px dashed #919191;
+    margin-top: 0.3rem;
+    padding: 0 1rem;
+}
+
+.checkout-page-order-infos-container {
+    width: calc(100% - 2rem);
+    border: 1px dashed #919191;
+    margin-top: 0.3rem;
+    padding: 1rem;
+}
+
+.checkout-page-shop {
+    margin: 1rem 0;
+}
+
+.checkout-page-shop-header {
+    display: flex;
+    align-items: center;
+}
+
+.checkout-page-shop-header img {
+    width: 1.3rem;
+    height: 1.3rem;
+    margin: 0 0.3rem;
+}
+
+.checkout-page-product {
+    display: flex;
+    align-items: center;
+}
+
+.checkout-page-product-image {
+    width: 6rem;
+    height: 6rem;
+    margin: 0 0.3rem;
+}
+
+.checkout-page-product-info {
+    display: flex;
+}
+
+.checkout-page-product-quantity {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout-page-product-cost {
+    text-align: right;
+}
+
+.checkout-page-coupon-list {
+    margin: 0 1rem;
+    margin-top: 0.3rem;
+}
+
+.checkout-page-coupon-using {
+    margin: 0.3rem 0;
+    border: 1px solid #919191;
+    background-color: #A4895C;
+    color: white;
+    border-radius: 0.5rem;
+    padding: 0.3rem 0.7rem;
+}
+
+.checkout-page-coupon-description, .checkout-page-coupon-time {
+    font-size: 0.8rem;
+}
+
+.checkout-page-control-buttons {
+    display: flex;
+    justify-content: end;
+    margin-top: 1rem;
+}
+
+.checkout-page-pre-step-btn {
+    height: 2.5rem;
+    padding: 0 1rem;
+    background-color: #E1E3E3;
+    color: black;
+    border: none;
+    border-radius: 1.25rem;
+    font-size: 1.2rem;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.checkout-page-checkout-btn {
+    height: 2.5rem;
+    padding: 0 1rem;
+    background-color: #B89354;
+    color: white;
+    border: none;
+    border-radius: 1.25rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+}

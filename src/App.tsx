@@ -32,6 +32,7 @@ import AccountOrderInfo from "./account/customer/AccountOrderInfo";
 import ShopOrders from "./account/staff/ShopOrders";
 import StaffOrderProfile from "./account/staff/StaffOrderProfile";
 import ShoppingCart from "./shopping_cart/ShoppingCart";
+import CheckoutPage from "./checkout/CheckoutPage";
 
 function MainBody() {
 	return (
@@ -73,6 +74,7 @@ function MainBody() {
 					</Route>
 					<Route path="/product" element={<ProductPage />} />
 					<Route path="/user/shopping-cart" element={<ShoppingCart />} />
+					<Route path="/user/checkout" element={<CheckoutPage />} />
 				</Routes>
 			</BrowserRouter>
 		</main>
