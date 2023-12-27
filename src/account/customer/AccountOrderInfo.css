@@ -1,0 +1,72 @@
+.account-order-infos {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.account-order-label {
+    font-size: 1.2rem;
+    color: #4D4D4D;
+}
+
+.account-order-infos-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+}
+
+.account-order-infos-state {
+    color: #4D4D4D;
+}
+
+.account-order-info-container {
+    font-size: 1.2rem;
+    margin-top: 0.8rem;
+}
+
+.account-order-info-box {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5rem;
+    padding: 0.5rem 1.2rem;
+    border: 2px dashed #E1E3E3;
+}
+
+.account-order-recive-infos {
+    line-height: 2.1rem;
+}
+
+.account-order-shop-info {
+    display: flex;
+    line-height: 2.5rem;
+    align-items: center;
+}
+
+.account-order-shop-info img {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+    border-radius: 50%;
+}
+
+.account-order-product-table {
+    margin-top: 0.7rem;
+}
+
+.account-order-product-table td {
+    padding: 0.3rem 0.5rem;
+}
+
+.account-order-calculate-table {
+    margin-top: 0.7rem;
+}
+
+.account-order-calculate-table td {
+    padding: 0.3rem 0.5rem;
+}
+
+.account-order-other-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.7rem 0;
+}
