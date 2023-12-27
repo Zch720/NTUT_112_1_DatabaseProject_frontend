@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import Header from "./utils/Header";
@@ -14,9 +14,9 @@ import AccountCoupons from "./account/customer/AccountCoupons";
 import ShopProfile from "./account/staff/ShopProfile";
 import ShopProducts from "./account/staff/ShopProducts";
 import ShopCoupons from "./account/staff/ShopCoupons";
-import ProductProfile from "./shop/ProductProfile";
-import CouponProfile from "./shop/CouponProfile";
-import SellReport from "./shop/SellReport";
+import ProductProfile from "./account/staff/ProductProfile";
+import CouponProfile from "./account/staff/CouponProfile";
+import SellReport from "./account/staff/SellReport";
 import AccountManage from "./account/admin/AccountManage";
 import AccountManagementInfo from "./account/admin/AccountInfo";
 import ShopManage from "./account/admin/ShopManage";
@@ -25,6 +25,7 @@ import ShopProductManagementInfo from "./account/admin/ShopProductInfo";
 import ShopStaffManagementInfo from "./account/admin/ShopStaffInfo";
 import ProductsPage from "./product/ProductsPage";
 import AllProduct from "./product/AllProduct";
+import ShopsPage from "./shop/ShopsPage";
 
 function MainBody() {
 	return (
@@ -36,6 +37,7 @@ function MainBody() {
 					<Route path="/products" element={<ProductsPage />}>
 						<Route path="/products" element={<AllProduct />} />
 					</Route>
+					<Route path="/shops" element={<ShopsPage />} />
 					<Route path="/user/signin" element={<SignInPage />} />
 					<Route path="/user/signup" element={<SignUpPage />} />
 					<Route path="/user" element={<Account />}>
