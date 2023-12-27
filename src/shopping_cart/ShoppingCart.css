@@ -1,0 +1,155 @@
+.shopping-cart-container {
+    font-size: 1.2rem;
+    padding: 1rem 2rem;
+}
+
+.label-value-pair {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 0;
+}
+
+.shopping-cart-header {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.shopping-cart-header img {
+    width: 1.6rem;
+    height: 1.6rem;
+}
+
+.shopping-cart-infos {
+    display: flex;
+    justify-content: space-between;
+}
+
+.shopping-cart-products, .shopping-cart-cost-calculate {
+    margin-top: 1rem;
+    width: 48%;
+}
+
+.shopping-cart-products-header {
+    display: flex;
+    align-items: center;
+}
+
+input[type="checkbox"].product-checkbox {
+    accent-color: #A4895C;
+}
+
+.shopping-cart-shops-container {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 2rem);
+    border: 1px dashed #919191;
+    padding: 0 1rem;
+}
+
+.shopping-cart-cost-calculate-container {
+    width: calc(100% - 2rem);
+    border: 1px dashed #919191;
+    padding: 1rem;
+}
+
+.shopping-cart-shop {
+    margin: 1rem 0;
+}
+
+.shopping-cart-shop-header {
+    display: flex;
+    align-items: center;
+}
+
+.shopping-cart-shop-header img {
+    width: 1.3rem;
+    height: 1.3rem;
+    margin: 0 0.3rem;
+}
+
+.shopping-cart-product {
+    display: flex;
+    align-items: center;
+}
+
+.shopping-cart-product-image {
+    width: 6rem;
+    height: 6rem;
+    margin: 0 0.3rem;
+}
+
+.shopping-cart-product-info {
+    display: flex;
+}
+
+.shopping-cart-product-quantity {
+    display: flex;
+    flex-direction: column;
+}
+
+.shopping-cart-product-cost {
+    text-align: right;
+}
+
+.shopping-cart-product-delete {
+    flex-grow: 1;
+}
+
+.shopping-cart-product-delete > button {
+    width: 1.5rem;
+    height: 1.5rem;
+    float: right;
+    background-color: transparent;
+    background-image: url("/images/shopping_cart_delete_product.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
+    cursor: pointer;
+}
+
+.shopping-cart-product-delete > button:hover {
+    background-image: url("/images/shopping_cart_delete_product_hover.svg");
+}
+
+.shopping-cart-product-delete > button:active {
+    background-image: url("/images/shopping_cart_delete_product.svg");
+}
+
+.shopping-cart-coupon-list {
+    margin: 0 1rem;
+    margin-top: 0.3rem;
+}
+
+.shopping-cart-coupon {
+    margin: 0.3rem 0;
+    border: 1px solid #919191;
+    border-radius: 0.5rem;
+    padding: 0.3rem 0.7rem;
+}
+
+.shopping-cart-coupon-using {
+    margin: 0.3rem 0;
+    border: 1px solid #919191;
+    background-color: #A4895C;
+    color: white;
+    border-radius: 0.5rem;
+    padding: 0.3rem 0.7rem;
+}
+
+.shopping-cart-coupon-description, .shopping-cart-coupon-time {
+    font-size: 0.8rem;
+}
+
+.shopping-cart-checkout-btn {
+    height: 2.5rem;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    background-color: #A4895C;
+    color: white;
+    border: none;
+    padding: 0 1rem;
+    border-radius: 1.25rem;
+    cursor: pointer;
+    float: right;
+}

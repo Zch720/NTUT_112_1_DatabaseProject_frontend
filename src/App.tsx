@@ -31,6 +31,7 @@ import ProductPage from "./product/ProductPage";
 import AccountOrderInfo from "./account/customer/AccountOrderInfo";
 import ShopOrders from "./account/staff/ShopOrders";
 import StaffOrderProfile from "./account/staff/StaffOrderProfile";
+import ShoppingCart from "./shopping_cart/ShoppingCart";
 
 function MainBody() {
 	return (
@@ -71,6 +72,7 @@ function MainBody() {
 						<Route path="/shop" element={<AllProduct />} />
 					</Route>
 					<Route path="/product" element={<ProductPage />} />
+					<Route path="/user/shopping-cart" element={<ShoppingCart />} />
 				</Routes>
 			</BrowserRouter>
 		</main>
