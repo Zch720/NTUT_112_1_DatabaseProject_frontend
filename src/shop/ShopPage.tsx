@@ -22,7 +22,10 @@ function ShopBannerLogo({ shop }: { shop: ShopDataType }) {
 function ShopBannerInfo({ shop }: { shop: ShopDataType }) {
     return (
         <div className="shop-page-banner-info">
-            <h1>{shop.name}</h1>
+            <div className="shop-page-banner-info-head">
+                <h1>{shop.name}</h1>
+                <ShopFollowButton />
+            </div>
             <p>{shop.description}</p>
             <div className="w-flex-g1"></div>
             <p>
@@ -34,11 +37,11 @@ function ShopBannerInfo({ shop }: { shop: ShopDataType }) {
     );
 }
 
-function ShopBannerFollowButton() {
+function ShopFollowButton() {
     const [followed, setFollowed] = useState(getUserFollowed());
 
     return (
-        <div className="shop-page-banner-follow">
+        <div className="shop-page-follow">
             {followed ?
                 <button id="unfollow-button" onClick={() => setFollowed(false)}>取消追蹤</button>
             :
@@ -55,8 +58,7 @@ function ShopBanner(props: { shop: ShopDataType }) {
         <div className="shop-page-banner">
             <ShopBannerLogo shop={shop}/>
             <ShopBannerInfo shop={shop}/>
-            <div className="w-flex-g1"></div>
-            <ShopBannerFollowButton />
+            {/* <ShopBannerFollowButton /> */}
         </div>
     );
 }

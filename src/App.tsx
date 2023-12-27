@@ -28,6 +28,7 @@ import AllProduct from "./product/AllProduct";
 import ShopsPage from "./shop/ShopsPage";
 import ShopPage from "./shop/ShopPage";
 import ProductPage from "./product/ProductPage";
+import AccountOrderInfo from "./account/customer/AccountOrderInfo";
 
 function MainBody() {
 	return (
@@ -47,6 +48,7 @@ function MainBody() {
 						<Route path="/user/profile" element={<AccountProfile userLoginId="" userName="" userAddress="" userEmail="" userPhoneNumber="" />} />
 						<Route path="/user/followed-shops" element={<AccountFollowedShops />} />
 						<Route path="/user/orders" element={<AccountOrders />} />
+						<Route path="/user/order" element={<AccountOrderInfo />} />
 						<Route path="/user/coupons" element={<AccountCoupons />} />
 						<Route path="/user/shop-profile" element={<ShopProfile />} />
 						<Route path="/user/shop-products" element={<ShopProducts />} />

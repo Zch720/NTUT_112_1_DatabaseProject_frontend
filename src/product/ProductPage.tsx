@@ -10,7 +10,7 @@ type ProductDataType = {
     description: string;
     category: string;
     shopId: string;
-    shop: string;
+    shopName: string;
     shopLogo: string;
     shopDescription: string;
 };
@@ -61,16 +61,18 @@ function ProductShopInfo(props: { product: ProductDataType }) {
                 <img src="/logo.PNG"/>
             </div>
             <div className="product-page-shop-infos">
-                <h3>{product.shop}</h3>
+                <div className="product-page-shop-info-header">
+                    <h3>{product.shopName}</h3>
+                    <div className="product-page-shop-follow">
+                        {followed ?
+                            <button id="unfollow-button" onClick={() => setFollowed(false)}>取消追蹤</button>
+                        :
+                            <button id="follow-button" onClick={() => setFollowed(true)}>追蹤</button>
+                        }
+                    </div>
+                </div>
                 <p>{product.shopDescription}</p>
                 <div className="w-flex-g1"></div>
-                <div className="product-page-shop-follow">
-                    {followed ?
-                        <button id="unfollow-button" onClick={() => setFollowed(false)}>取消追蹤</button>
-                    :
-                        <button id="follow-button" onClick={() => setFollowed(true)}>追蹤</button>
-                    }
-                </div>
             </div>
         </div>
     );
@@ -120,7 +122,7 @@ function getFakeProductData(): ProductDataType {
         description: "迎接全新的美味冒險，品味宇宙好吃到爆炸的巧克力豆軟餅乾！這款特別的餅乾將帶你飛向無垠的星際宇宙，每一口都是一場宇宙之旅的絕佳體驗。無論是單獨享用，或搭配你最愛的飲料，都能為你的味蕾帶來無限的喜悅。",
         category: "軟餅乾",
         shopId: "1",
-        shop: "旋風奶油",
+        shopName: "旋風奶油",
         shopLogo: "/logo.PNG",
         shopDescription: "致力於做出可以飛的奶油餅乾。"
     }

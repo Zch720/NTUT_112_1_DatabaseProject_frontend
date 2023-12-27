@@ -20,8 +20,8 @@
 }
 
 .shop-page-banner-info {
+    width: calc(100% - 18rem);
     display: flex;
-    width: 50%;
     flex-direction: column;
     justify-content: left;
 }
@@ -32,10 +32,16 @@
     margin-block-end: 0.5rem;
 }
 
-.shop-page-banner-follow button {
+.shop-page-banner-info-head {
+    display: flex;
+    align-items: center;
+}
+
+.shop-page-follow button {
     width: 6.5rem;
     height: 2.5rem;
     margin-top: 0.5rem;
+    margin-left: 0.8rem;
     color: white;
     font-size: 1rem;
     padding: 0 1.2rem;
@@ -43,10 +49,10 @@
     border-radius: 1.25rem;
 }
 
-.shop-page-banner-follow #follow-button {
+.shop-page-follow #follow-button {
     background-color: #7F4721;
 }
 
-.shop-page-banner-follow #unfollow-button {
+.shop-page-follow #unfollow-button {
     background-color: #B89354;
 }

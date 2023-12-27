@@ -61,7 +61,7 @@ function AccountList() {
     return (
         <div className="w-fit">
             <div className="account-manage-search-container">
-                <div className="default-search-box-container ">
+                <div className="default-search-box-container" style={{ margin: "0.2rem 0" }}>
                     <Search hasBorder={true}/>
                 </div>
             </div>
