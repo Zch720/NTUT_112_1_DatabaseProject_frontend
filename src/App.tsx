@@ -30,6 +30,7 @@ import ShopPage from "./shop/ShopPage";
 import ProductPage from "./product/ProductPage";
 import AccountOrderInfo from "./account/customer/AccountOrderInfo";
 import ShopOrders from "./account/staff/ShopOrders";
+import StaffOrderProfile from "./account/staff/StaffOrderProfile";
 
 function MainBody() {
 	return (
@@ -55,6 +56,7 @@ function MainBody() {
 						<Route path="/user/shop-products" element={<ShopProducts />} />
 						<Route path="/user/shop/product" element={<ProductProfile />} />
 						<Route path="/user/shop-orders" element={<ShopOrders />} />
+						<Route path="/user/shop/order" element={<StaffOrderProfile />} />
 						<Route path="/user/shop-coupons" element={<ShopCoupons />} />
 						<Route path="/user/shop/coupon" element={<CouponProfile />} />
 						<Route path="/user/shop-report" element={<SellReport />} />
