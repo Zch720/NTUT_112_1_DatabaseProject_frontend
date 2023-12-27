@@ -473,10 +473,18 @@ function ShoppingCartCostCalculate(props: { shops: ShoppingCartShopType[] }) {
 export default function ShoppingCart() {
     let shopingCart = getFakeShoppingCart();
     const [shops, setShops] = useState<ShoppingCartShopType[]>(shopingCart.shops);
+    const [productQuantity, setProductQuantity] = useState(0);
+    useEffect(() => {
+        let productQuantity = 0;
+        shops.forEach((shop) => {
+            productQuantity += shop.products.length;
+        });
+        setProductQuantity(productQuantity);
+    }, [shops]);
 
     return (
         <div className="shopping-cart-container">
-            <ShoppingCartHeader productQuantity={8}/>
+            <ShoppingCartHeader productQuantity={productQuantity}/>
             <div className="shopping-cart-infos">
                 <ShoppingCartProducts shops={shops} setShops={setShops}/>
                 <ShoppingCartCostCalculate shops={shops}/>
