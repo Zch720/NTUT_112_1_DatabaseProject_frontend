@@ -60,7 +60,9 @@ function MainBody() {
 						<Route path="/user/admin/shop-product-info" element={<ShopProductManagementInfo />} />
 						<Route path="/user/admin/shop-staff-info" element={<ShopStaffManagementInfo />} />
 					</Route>
-					<Route path="/shop" element={<ShopPage />} />
+					<Route path="/shop" element={<ShopPage />}>
+						<Route path="/shop" element={<AllProduct />} />
+					</Route>
 				</Routes>
 			</BrowserRouter>
 		</main>

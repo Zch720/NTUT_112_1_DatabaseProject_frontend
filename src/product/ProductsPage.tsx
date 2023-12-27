@@ -1,9 +1,14 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useOutletContext } from "react-router-dom";
 import "./ProductsPage.css"
 
 export type ProductsListOrderChangeHandler = (order: "default" | "price" | "date") => void;
 export type ProductsListShowQuantityChangeHandler = (quantity: "12" | "24" | "36") => void;
+
+type ProductsOutletContextType = {
+    shopId: string | null;
+    shopName: string | null;
+};
 
 function ProductsOrderSelector({ onOrderChange }: { onOrderChange: ProductsListOrderChangeHandler }) {
     const orderSelectorRef = React.useRef<HTMLSelectElement>(null);
@@ -44,7 +49,20 @@ export function ProductsPageToolbar({ onOrderChange, onShowQuantityChange }: { o
     );
 }
 
-export default function ProductsPage() {
+export function GetProductsPageShopId() {
+    const context = useOutletContext<ProductsOutletContextType>();
+    return context.shopId;
+}
+
+export function GetProductsPageShopName() {
+    const context = useOutletContext<ProductsOutletContextType>();
+    return context.shopName;
+}
+
+ProductsPage.defaultProps = { shopId: null, shopName: null };
+export default function ProductsPage(props : { shopId: string, shopName: string }) {
+    const { shopId, shopName } = props;
+
     return (
         <React.Fragment>
             <div style={{display: "flex"}}>
@@ -54,7 +72,7 @@ export default function ProductsPage() {
                         <a href="/products#">全部</a>
                     </div>
                 </div>
-                <Outlet />
+                <Outlet context={{ shopId: shopId, shopName: shopName }}/>
             </div>
         </React.Fragment>
     );
