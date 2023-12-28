@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Collapse } from "react-collapse";
 import "./AccountProfile.css"
 
-export type AccountInfoProps = {
+export type AccountInfoType = {
     userLoginId: string;
     userName: string;
     userAddress: string;
@@ -62,7 +62,7 @@ function AccountProfileInfo (infoType: string, buttonId: string, infoValue: stri
     );
 }
 
-function AccountPageInfos ({ userLoginId, userName, userAddress, userEmail, userPhoneNumber }: AccountInfoProps) {
+function AccountPageInfos ({ userLoginId, userName, userAddress, userEmail, userPhoneNumber }: AccountInfoType) {
     return(
         <div className="account-profile-infos">
             <h3 className="account-profile-info">{userLoginId}</h3>
@@ -75,11 +75,23 @@ function AccountPageInfos ({ userLoginId, userName, userAddress, userEmail, user
     );
 }
 
-export default function AccountProfile(userInfo: AccountInfoProps) {
+export default function AccountProfile() {
+    const userInfo: AccountInfoType = getFakeUserInfo();
+
     return (
         <div className="account-page-content">
             <AccountPageTitle />
             <AccountPageInfos userLoginId={userInfo.userLoginId} userName={userInfo.userName} userAddress={userInfo.userAddress} userEmail={userInfo.userEmail} userPhoneNumber={userInfo.userPhoneNumber}/>
         </div>
     );
+}
+
+function getFakeUserInfo(): AccountInfoType {
+    return {
+        userLoginId: "fakeUser",
+        userName: "fakeUserName",
+        userAddress: "fakeUserAddress",
+        userEmail: "fakeUserEmail",
+        userPhoneNumber: "fakeUserPhoneNumber"
+    };
 }

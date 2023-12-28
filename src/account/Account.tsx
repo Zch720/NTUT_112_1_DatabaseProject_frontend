@@ -28,10 +28,10 @@ function StaffAccount() {
             <h3 className="account-menu-title">帳戶</h3>
             <div className="account-menu-options">
                 <a href="/user/profile#">帳戶資訊</a>
-                <a href="/user/shop-profile#">商店管理</a>
-                <a href="/user/shop-products#">商品管理</a>
-                <a href="/user/shop-coupons#">優惠券管理</a>
-                <a href="/user/shop-report#">銷售報表</a>
+                <a href="/user/shop/profile#">商店管理</a>
+                <a href="/user/shop/products#">商品管理</a>
+                <a href="/user/shop/coupons#">優惠券管理</a>
+                <a href="/user/shop/report#">銷售報表</a>
             </div>
         </div>
     );
