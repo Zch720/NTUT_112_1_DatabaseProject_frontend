@@ -1,12 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import "./Account.css";
-
-export enum AccountType {
-    Customer,
-    Staff,
-    Admin
-}
+import GetAccountTypeController, { AccountType } from "../controller/GetAccountTypeController";
+import { useCookies } from "react-cookie";
+import { devMode } from "../config.json";
 
 function CustomerAccount() {
     return (
@@ -50,37 +47,52 @@ function AdminAccount() {
     );
 }
 
-export default function Account() {
-    // TODO: get account type from server
-    let accountType: AccountType = getFakeAccountType("admin");
-    let accountPage: JSX.Element = <></>;
-
-    if (accountType === AccountType.Customer) {
-        accountPage = CustomerAccount();
-    } else if (accountType == AccountType.Staff) {
-        accountPage = StaffAccount();
-    } else if (accountType == AccountType.Admin) {
-        accountPage = AdminAccount();
+function AccountPageMenu(props: {
+    accountType: AccountType
+}) {
+    if (devMode)
+        return CustomerAccount();
+    switch (props.accountType) {
+        case AccountType.Customer:
+            return CustomerAccount();
+        case AccountType.Staff:
+            return StaffAccount();
+        case AccountType.Admin:
+            return AdminAccount();
     }
+}
+
+export default function Account() {
+    const [cookies] = useCookies(["accountId"]);
+    const [accountType, setAccountType] = useState<AccountType | null>(null);
+    useEffect(() => {
+        GetUserAccountType(cookies.accountId, setAccountType);
+    }, [cookies.accountId]);
 
     return (
         <React.Fragment>
-            <div style={{display: "flex"}}>
-                {accountPage}
-                <Outlet />
-            </div>
+            {
+                (accountType || devMode) ?
+                    <div style={{display: "flex"}}>
+                        <AccountPageMenu accountType={accountType!} />
+                        <Outlet />
+                    </div>
+                :
+                    null
+            }
         </React.Fragment>
     );
 }
 
-function getFakeAccountType(type: "customer" | "staff" | "admin"): AccountType {
-    switch (type) {
-        case "customer":
-            return AccountType.Customer;
-        case "staff":
-            return AccountType.Staff;
-        case "admin":
-            return AccountType.Admin;
+async function GetUserAccountType(
+    userId: string,
+    setAccountType: (accountType: AccountType) => void
+): Promise<void> {
+    const result = await GetAccountTypeController(userId);
+    if (result === AccountType.None) {
+        if (!devMode)
+            location.href = "/user/signin#";
+    } else {
+        setAccountType(result);
     }
-    return AccountType.Customer;
 }

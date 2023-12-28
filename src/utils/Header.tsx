@@ -14,12 +14,12 @@ function ToolsBar() {
         <div id="user-tools-bar">
             <div className="header-search-box"><SearchBox /></div>
             <div className="user-tool-bar-item">
-                <a href="/user/signin">
+                <a href="/user">
                     <img src={ACCOUNT_ICON} />
                 </a>
             </div>
             <div className="user-tool-bar-item" style={{marginRight: "0.5vw"}}>
-                <a href="/shopping-cart">
+                <a href="/user/shopping-cart">
                     <img src={SHOPPING_CART_ICON} />
                 </a>
             </div>
