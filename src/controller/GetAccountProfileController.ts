@@ -5,7 +5,7 @@ import { AccountProfileViewModel, ToAccountProfileViewModel } from "../mapper/Ac
 export default async function GetAccountProfile(
     userId: string
 ): Promise<AccountProfileViewModel | null> {
-    const response = await axios.get(`${backendUrl}/account/profile?userId=${userId}`, {
+    const response = await axios.get(`${backendUrl}/api/user/profile?userId=${userId}`, {
         withCredentials: true,
     });
     if (response.status == 200 && response.data != "") {
