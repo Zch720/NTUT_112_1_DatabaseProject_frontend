@@ -1,0 +1,42 @@
+.warning-window-container {
+    display: none;
+}
+
+.warning-window-background {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.warning-window {
+    width: 25rem;
+    height: 12rem;
+    background-color: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 101;
+    border: 0.5rem solid #B89354;
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.warning-window > button {
+    height: 2.5rem;
+    background-color: #B89354;
+    border: none;
+    border-radius: 1.25rem;
+    color: white;
+    font-size: 1.2rem;
+    padding: 0 1rem;
+    cursor: pointer;
+}
