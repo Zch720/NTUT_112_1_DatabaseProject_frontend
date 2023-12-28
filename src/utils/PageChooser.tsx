@@ -5,25 +5,33 @@ import DOUBLE_LEFT_ARROW from "../assets/double_left_icon.png";
 import RIGHT_ARROW from "../assets/right_icon.png";
 import DOUBLE_RIGHT_ARROW from "../assets/double_right_icon.png";
 
-export type PageChooserProps = {
+export default function PageChooser(props: {
     maxPage: number;
     onPageChange: (page: number) => void;
-};
-
-export default function PageChooser(props: PageChooserProps) {
-    const [page, setPage] = useState<number>(props.maxPage > 0 ? 1 : 0);
+}) {
+    const [maxPage, setMaxPage] = useState<number>(props.maxPage);
+    const [page, setPage] = useState<number>((props.maxPage > 0) ? 1 : 0);
 
     useEffect(() => {
+        setMaxPage(props.maxPage);
+        if (props.maxPage < page) {
+            setPage(props.maxPage);
+        } else if (page === 0) {
+            setPage((props.maxPage > 0) ? 1 : 0);
+        }
+    }, [props.maxPage]);
+    const setNewPage = (page: number) => {
+        setPage(page);
         props.onPageChange(page);
-    }, [page]);
+    }
 
     return (
         <div className="page-chooser-container">
-            <img className="unselectable" src={DOUBLE_LEFT_ARROW} onClick={() => page > 1 ? setPage(1) : {}} />
-            <img className="unselectable" src={LEFT_ARROW} onClick={() => page > 1 ? setPage(page - 1) : {}} />
+            <img className="unselectable" src={DOUBLE_LEFT_ARROW} onClick={() => page > 1 ? setNewPage(1) : {}} />
+            <img className="unselectable" src={LEFT_ARROW} onClick={() => page > 1 ? setNewPage(page - 1) : {}} />
             <span className="unselectable">{page}</span>
-            <img className="unselectable" src={RIGHT_ARROW} onClick={() => page < props.maxPage ? setPage(page + 1) : {}} />
-            <img className="unselectable" src={DOUBLE_RIGHT_ARROW} onClick={() => page < props.maxPage ? setPage(props.maxPage) : {}} />
+            <img className="unselectable" src={RIGHT_ARROW} onClick={() => page < maxPage ? setNewPage(page + 1) : {}} />
+            <img className="unselectable" src={DOUBLE_RIGHT_ARROW} onClick={() => page < maxPage ? setNewPage(maxPage) : {}} />
         </div>
     );
 }
