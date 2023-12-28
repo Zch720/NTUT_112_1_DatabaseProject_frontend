@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useCookies } from "react-cookie";
 import "../SignPage.css";
 import "./SignInPage.css"
-import SignInController from "../../controller/SignInController"
+import SignInController, { SignInStatus } from "../../controller/SignInController"
+import WarningWindow from "../../utils/WarningWindow";
+import { AiFillStepForward } from "react-icons/ai";
 
 function SignInOption() {
     return (
@@ -13,11 +15,17 @@ function SignInOption() {
     );
 }
 
-function SignInInputs() {
+function SignInInputs(props: {
+    showWarningMessage: (message: string) => void
+}) {
+    const { showWarningMessage } = props;
     const [cookies, setCookie, removeCookie] = useCookies(["accountId"]);
 
     const setCookiesAccountId = (accountId: string) => {
         setCookie("accountId", accountId, { path: "/" });
+    }
+    const signin = async () => {
+        SignIn(setCookiesAccountId, showWarningMessage);
     }
 
     return (
@@ -30,25 +38,49 @@ function SignInInputs() {
                 密碼<br/>
                 <input type="password" id="password-input"/>
             </label>
-            <button type="submit" onClick={() => SignIn(setCookiesAccountId)}>登入</button>
+            <button type="submit" onClick={signin}>登入</button>
         </div>
     );
 }
 
 export default function SignInPage() {
+    const [message, setMessage] = React.useState<string>("");
+    const [open, setOpen] = React.useState<boolean>(false);
+    const showWarningMessage = (message: string) => {
+        setMessage(message);
+        setOpen(true);
+    }
+
     return (
         <React.Fragment>
+            <WarningWindow message={message} open={open} resetOpen={() => setOpen(false)}/>
             <SignInOption />
-            <SignInInputs />
+            <SignInInputs showWarningMessage={showWarningMessage}/>
         </React.Fragment>
     );
 }
 
-async function SignIn(setCookiesAccountId: (accountId: string) => void) {
+async function SignIn(
+    setCookiesAccountId: (accountId: string) => void,
+    showWarningMessage: (message: string) => void
+) {
     const userAccount = (document.getElementById("user-account-input") as HTMLInputElement).value;
     const password = (document.getElementById("password-input") as HTMLInputElement).value;
-    var success = await SignInController(userAccount, password, setCookiesAccountId);
-    if (success) {
+    if (userAccount === "") {
+        showWarningMessage("請輸入使用者名稱 / E-mail");
+        return;
+    }
+    if (password === "") {
+        showWarningMessage("請輸入密碼");
+        return;
+    }
+
+    const result: SignInStatus = await SignInController(userAccount, password, setCookiesAccountId);
+    if (result === SignInStatus.Success) {
         location.href = "/home#";
+    } else if (result === SignInStatus.AccountNotExist) {
+        showWarningMessage("帳號或密碼錯誤");
+    } else if (result === SignInStatus.CannotConnectToServer) {
+        showWarningMessage("無法連接到伺服器");
     }
 }
