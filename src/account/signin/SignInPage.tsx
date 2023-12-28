@@ -1,10 +1,9 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useCookies } from "react-cookie";
 import "../SignPage.css";
 import "./SignInPage.css"
 import SignInController, { SignInStatus } from "../../controller/SignInController"
 import WarningWindow from "../../utils/WarningWindow";
-import { AiFillStepForward } from "react-icons/ai";
 
 function SignInOption() {
     return (
