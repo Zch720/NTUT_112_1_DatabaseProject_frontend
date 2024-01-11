@@ -7,10 +7,8 @@ export default async function ModifyAccountEmail(
 ): Promise<boolean> {
     try {
         const response = await axios.put(`${backendUrl}/api/user/modify/email`, {
-            userId: userId,
-            email: email
-        }, {
-            withCredentials: true,
+            "userId": userId,
+            "email": email
         });
         return response.status == 200;
     } catch (error) {

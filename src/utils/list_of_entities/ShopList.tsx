@@ -13,8 +13,8 @@ function ShopItem({ shopId, shopIcon, shopName }: ShopListData) {
 export default function ShopList({ shops }: { shops: ShopListData[] }) {
     return (
         <div className="shop-list">
-            {shops.map((shop) => (
-                <ShopItem shopId={shop.shopId} shopIcon={shop.shopIcon} shopName={shop.shopName} />
+            {shops.map((shop, idx) => (
+                <ShopItem key={"shop-list-" + idx} shopId={shop.shopId} shopIcon={shop.shopIcon} shopName={shop.shopName} />
             ))}
         </div>
     );

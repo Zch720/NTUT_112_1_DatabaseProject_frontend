@@ -1,22 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ProductPage.css";
 import ImagesViewer from "../utils/ImagesViewer";
+import { ProductPageDataType } from "../mapper/ProductMapper";
+import GetAccountFollowedShopController from "../controller/GetAccountFollowedShopController";
+import GetProductController from "../controller/GetProductController";
+import { useCookies } from "react-cookie";
+import SnackbarList, { GetNewSnackbar, SnackbarType } from "../utils/Snackbar";
+import SetShoppingCartProduct from "../controller/SetShoppingCartProductController";
+import { devMode } from "../config.json";
 
-type ProductDataType = {
-    images: string[];
-    name: string;
-    price: number;
-    stock: number;
-    description: string;
-    category: string;
-    shopId: string;
-    shopName: string;
-    shopLogo: string;
-    shopDescription: string;
-};
-
-function ProductInfo(props: { product: ProductDataType }) {
-    const { product } = props;
+function ProductInfo(props: {
+    accountId: string,
+    product: ProductPageDataType,
+    snackbarList: SnackbarType[],
+    setSnackbarList: (snackbarList: SnackbarType[]) => void
+}) {
+    const { accountId, product, snackbarList, setSnackbarList } = props;
     const [quantity, setQuantity] = useState(0);
     const quantityAdd = () => {
         if (quantity < product.stock)
@@ -25,6 +24,9 @@ function ProductInfo(props: { product: ProductDataType }) {
     const quantityMinus = () => {
         if (quantity > 0)
             setQuantity(quantity - 1);
+    }
+    const AddToShoppingCartOnClick = () => {
+        AddProductToShoppingCart(accountId, GetProductId()!, quantity, snackbarList, setSnackbarList);
     }
     
     return (
@@ -45,20 +47,26 @@ function ProductInfo(props: { product: ProductDataType }) {
                     </div>
                     <span className="product-page-stock">庫存 {product.stock} 件</span>
                 </div>
-                <button className="add-to-shopping-cart-button">加入購物車</button>
+                <button className="add-to-shopping-cart-button" onClick={AddToShoppingCartOnClick}>加入購物車</button>
             </div>
         </div>
     );
 }
 
-function ProductShopInfo(props: { product: ProductDataType }) {
-    const { product } = props;
-    const [followed, setFollowed] = useState(getUserFollowedShop());
+function ProductShopInfo(props: {
+    accountId: string,
+    product: ProductPageDataType
+}) {
+    const { accountId, product } = props;
+    const [followed, setFollowed] = useState(false);
+    useEffect(() => {
+        GetUserFollowedShop(accountId, product.shopId, setFollowed);
+    });
 
     return (
         <div className="product-page-shop-info">
             <div className="product-page-shop-logo">
-                <img src="/logo.PNG"/>
+                <img src={product.shopLogo}/>
             </div>
             <div className="product-page-shop-infos">
                 <div className="product-page-shop-info-header">
@@ -78,7 +86,7 @@ function ProductShopInfo(props: { product: ProductDataType }) {
     );
 }
 
-function ProductDescription(props: { product: ProductDataType }) {
+function ProductDescription(props: { product: ProductPageDataType }) {
     const { product } = props;
 
     return (
@@ -92,38 +100,77 @@ function ProductDescription(props: { product: ProductDataType }) {
 }
 
 export default function ProductPage() {
-    // TODO: get product data from server
-    const product = getFakeProductData();
+    const [product, setProduct] = useState<ProductPageDataType | null>(null);
+    const [snackBars, setSnackBars] = useState<SnackbarType[]>([]);
+    const [cookies] = useCookies(["accountId"]);
+    useEffect(() => {
+        const productId = GetProductId();
+        if (productId != null)
+            GetProduct(productId, setProduct);
+    }, []);
 
     return (
-        <React.Fragment>
-            <ProductInfo product={product} />
-            <ProductShopInfo product={product} />
-            <ProductDescription product={product} />
-        </React.Fragment>
+        product != null
+        ?
+            <React.Fragment>
+                <SnackbarList snackbarList={snackBars} setSnackbarList={setSnackBars} />
+                <ProductInfo accountId={cookies.accountId} product={product} snackbarList={snackBars} setSnackbarList={setSnackBars}/>
+                <ProductShopInfo accountId={cookies.accountId} product={product} />
+                <ProductDescription product={product} />
+            </React.Fragment>
+        : null
     );
 }
 
-function getUserFollowedShop(): boolean {
-    // TODO: get user followed from server
-    return false;
+async function GetUserFollowedShop(
+    userId: string,
+    shopId: string,
+    setFollowed: (followed: boolean) => void
+) {
+    setFollowed(await GetAccountFollowedShopController(userId, shopId));
 }
 
-function getFakeProductData(): ProductDataType {
-    return {
-        images: [
-            "https://i.imgur.com/HgELSyF.png",
-            "https://i.imgur.com/4pPAVIJ.png",
-            "https://i.imgur.com/9yplM34.png"
-        ],
-        name: "宇宙好吃到爆炸巧克力豆軟餅乾",
-        price: 80,
-        stock: 30,
-        description: "迎接全新的美味冒險，品味宇宙好吃到爆炸的巧克力豆軟餅乾！這款特別的餅乾將帶你飛向無垠的星際宇宙，每一口都是一場宇宙之旅的絕佳體驗。無論是單獨享用，或搭配你最愛的飲料，都能為你的味蕾帶來無限的喜悅。",
-        category: "軟餅乾",
-        shopId: "1",
-        shopName: "旋風奶油",
-        shopLogo: "/logo.PNG",
-        shopDescription: "致力於做出可以飛的奶油餅乾。"
+function GetProductId() {
+    if (devMode)
+        return "";
+    const params = new URLSearchParams(window.location.search);
+    return params.get("productId");
+}
+
+async function GetProduct(
+    productId: string,    
+    setProduct: (product: ProductPageDataType | null) => void
+) {
+    if (devMode) {
+        setProduct({
+            images: [],
+            name: "fake product",
+            price: 100,
+            stock: 10000,
+            description: "This is a fake product",
+            category: "category1, category2",
+            shopId: "",
+            shopName: "",
+            shopLogo: "",
+            shopDescription: ""
+        });
+        return;
+    }
+
+    setProduct(await GetProductController(productId));
+}
+
+async function AddProductToShoppingCart(
+    userId: string,
+    productId: string,
+    quantity: number,
+    snackbarList: SnackbarType[],
+    setSnackbarList: (snackbarList: SnackbarType[]) => void
+) {
+    const response = await SetShoppingCartProduct(userId, productId, quantity);
+    if (response) {
+        setSnackbarList([...snackbarList, GetNewSnackbar("已加入購物車", Date.now())])
+    } else {
+        setSnackbarList([...snackbarList, GetNewSnackbar("加入購物車失敗", Date.now())])
     }
 }

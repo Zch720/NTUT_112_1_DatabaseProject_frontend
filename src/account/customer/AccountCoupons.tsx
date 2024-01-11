@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./AccountCoupons.css";
 import SearchBox from "../../utils/SearchBox";
 import PageChooser from "../../utils/PageChooser";
+import { CouponListDataType } from "../../mapper/CouponMapper";
+import GetAccountCouponsListController from "../../controller/GetAccountCouponsListController";
+import GetAccountCouponsListCountController from "../../controller/GetAccountCouponsListCountController";
+import { useCookies } from "react-cookie";
 
 function AccountPageTitle() {
     return(
@@ -44,13 +48,25 @@ function CouponsTable({ coupons }: { coupons: CouponType[] }) {
     );
 }
 
-function CouponsList(props: { coupons: CouponType[], setCouponsOfPage: (page: number) => void }) {
+function CouponsList() {
+    const [couponsCount, setCouponsCount] = useState<number>(0);
+    const [coupons, setCoupons] = useState<CouponListDataType[]>([]);
+    const [cookies] = useCookies(["accountId"]);
+    const setCouponsOfPage = (page: number) => {
+        GetCoupons(cookies.accountId, page, 20, couponsCount, setCoupons);
+    };
+    useEffect(() => {
+        GetCouponsCount(cookies.accountId, setCouponsCount);
+    }, []);
+    useEffect(() => {
+        GetCoupons(cookies.accountId, 1, 20, couponsCount, setCoupons);
+    }, [couponsCount]);
+
     return (
         <div className="coupon-list-container">
-            <CouponsTable  coupons={props.coupons} />
-            {/* TODO: add max page number */}
+            <CouponsTable  coupons={coupons} />
             <div className="page-chooser-box">
-                <PageChooser maxPage={0} onPageChange={props.setCouponsOfPage} />
+                <PageChooser maxPage={Math.ceil(couponsCount / 20)} onPageChange={setCouponsOfPage} />
             </div>
         </div>
     );
@@ -64,17 +80,33 @@ type CouponType = {
 };
 
 export default function AccountCoupons() {
-    // TODO: set coupons
-    const [coupons, setCoupons] = useState<CouponType[]>([]);
-    const setCouponsOfPage = (page: number) => {
-        setCoupons([]);
-    };
-
     return (
         <div className="account-page-content">
             <AccountPageTitle />
             <div className="default-search-box-container"><SearchBox hasBorder={true} /></div>
-            <CouponsList coupons={coupons} setCouponsOfPage={setCouponsOfPage} />
+            <CouponsList />
         </div>
     );
 };
+
+async function GetCouponsCount(
+    userId: string,
+    setCouponsCount: (count: number) => void
+) {
+    setCouponsCount(await GetAccountCouponsListCountController(userId));
+}
+
+async function GetCoupons(
+    userId: string,
+    index: number,
+    prePage: number,
+    couponsCount: number,
+    setCoupons: (coupons: CouponListDataType[]) => void
+) {
+    if (index <= 0 || index >= Math.ceil(couponsCount / prePage)) {
+        return;
+    }
+    const start = (index - 1) * prePage;
+    const end = Math.min(index * prePage, couponsCount - 1);
+    setCoupons(await GetAccountCouponsListController(userId, start, end));
+}

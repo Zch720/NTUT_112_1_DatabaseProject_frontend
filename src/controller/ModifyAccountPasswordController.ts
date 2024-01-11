@@ -8,11 +8,9 @@ export default async function ModifyAccountPassword (
 ): Promise<boolean> {
     try {
         const response = await axios.put(`${backendUrl}/api/user/modify/password`, {
-            userId: userId,
-            oldPassword: oldPassword,
-            newPassword: newPassword
-        }, {
-            withCredentials: true,
+            "userId": userId,
+            "password": oldPassword,
+            "newPassword": newPassword
         });
         return response.status == 200;
     } catch (error) {

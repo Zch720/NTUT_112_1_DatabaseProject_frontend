@@ -1,25 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ShopPage.css";
 import ProductsPage from "../product/ProductsPage";
+import { ShopPageDataType } from "../mapper/ShopMapper";
+import GetShopController from "../controller/GetShopController";
+import GetAccountFollowedShopController from "../controller/GetAccountFollowedShopController";
+import { useCookies } from "react-cookie";
+import ModifyAccountShopFollowStateController from "../controller/ModifyAccountShopFollowStateController";
 
-type ShopDataType = {
-    logo: string;
-    name: string;
-    description: string;
-    address: string;
-    email: string;
-    phoneNumber: string;
-};
-
-function ShopBannerLogo({ shop }: { shop: ShopDataType }) {
+function ShopBannerLogo({ shop }: { shop: ShopPageDataType }) {
     return (
         <div className="shop-page-banner-logo">
-            <img src={shop.logo} alt="shop-logo"/>
+            <img src={shop.icon} alt="shop-logo"/>
         </div>
     );
 }
 
-function ShopBannerInfo({ shop }: { shop: ShopDataType }) {
+function ShopBannerInfo({ shop }: { shop: ShopPageDataType }) {
     return (
         <div className="shop-page-banner-info">
             <div className="shop-page-banner-info-head">
@@ -31,62 +27,90 @@ function ShopBannerInfo({ shop }: { shop: ShopDataType }) {
             <p>
                 <span>地址：{shop.address}</span><br/>
                 <span>Email：{shop.email}</span><br/>
-                <span>聯絡電話：{shop.phoneNumber}</span>
+                <span>聯絡電話：{shop.phone}</span>
             </p>
         </div>
     );
 }
 
 function ShopFollowButton() {
-    const [followed, setFollowed] = useState(getUserFollowed());
+    const [followed, setFollowed] = useState(false);
+    const [cookies] = useCookies(["accountId"]);
+    useEffect(() => {
+        GetUserFollowed(cookies.accountId, GetShopId(), setFollowed);
+    }, []);
+    const cancelFollow = () => {
+        setFollowed(false);
+        ModifyShopFollowState(cookies.accountId, GetShopId(), false);
+    };
+    const follow = () => {
+        setFollowed(true);
+        ModifyShopFollowState(cookies.accountId, GetShopId(), true);
+    };
 
     return (
         <div className="shop-page-follow">
             {followed ?
-                <button id="unfollow-button" onClick={() => setFollowed(false)}>取消追蹤</button>
+                <button id="unfollow-button" onClick={cancelFollow}>取消追蹤</button>
             :
-                <button id="follow-button" onClick={() => setFollowed(true)}>追蹤</button>
+                <button id="follow-button" onClick={follow}>追蹤</button>
             }
         </div>    
     );
 }
 
-function ShopBanner(props: { shop: ShopDataType }) {
+function ShopBanner(props: { shop: ShopPageDataType }) {
     const { shop } = props;
 
     return (
         <div className="shop-page-banner">
             <ShopBannerLogo shop={shop}/>
             <ShopBannerInfo shop={shop}/>
-            {/* <ShopBannerFollowButton /> */}
         </div>
     );
 }
 
 export default function ShopPage() {
-    // TODO: get shop data from server
-    const shop: ShopDataType = getFakeShopData();
+    const [shop, setShop] = useState<ShopPageDataType | null>(null);
+    useEffect(() => {
+        GetShop(GetShopId(), setShop);
+    }, []);
 
     return (
-        <React.Fragment>
-            <ShopBanner shop={shop}/>
-            <ProductsPage shopName={shop.name}/>
-        </React.Fragment>
+        shop != null
+        ?
+            <React.Fragment>
+                <ShopBanner shop={shop}/>
+                <ProductsPage shopId={GetShopId()} shopName={shop.name}/>
+            </React.Fragment>
+        : null
     );
 }
 
-function getUserFollowed(): boolean {
-    // TODO: get user followed from server
-    return false;
+async function GetUserFollowed(
+    userId: string,
+    shopId: string,
+    setFollowed: (followed: boolean) => void
+) {
+    setFollowed(await GetAccountFollowedShopController(userId, shopId));
 }
 
-function getFakeShopData(): ShopDataType {
-    return {
-        logo: "/logo.PNG",
-        name: "旋風奶油",
-        description: "致力於做出可以飛的餅乾。致力於做出可以飛的餅乾。致力於做出可以飛的餅乾。致力於做出可以飛的餅乾。致力於做出可以飛的餅乾。致力於做出可以飛的餅乾。致力於做出可以飛的餅乾。致力於做出可以飛的餅乾。致力於做出可以飛的餅乾。致力於做出可以飛的餅乾。致力於做出可以飛的餅乾。致力於做出可以飛的餅乾。致力於做出可以飛的餅乾。致力於做出可以飛的餅乾。",
-        address: "苗栗國旋風街 777 巷 6 號",
-        email: "whirlwind_cream@gmail.com",
-        phoneNumber: "(05) 7777-6666"
-    };
+function GetShopId(): string {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("id") as string;
+}
+
+async function GetShop(
+    shopId: string,
+    setShop: (shop: ShopPageDataType | null) => void    
+) {
+    setShop(await GetShopController(shopId));
+}
+
+async function ModifyShopFollowState(
+    userId: string,
+    shopId: string,
+    followed: boolean
+) {
+    await ModifyAccountShopFollowStateController(userId, shopId, followed);
 }

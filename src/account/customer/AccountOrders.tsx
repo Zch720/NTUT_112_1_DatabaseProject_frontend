@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./AccountOrders.css";
 import "../../utils/SearchBox.css";
 import SearchBox from "../../utils/SearchBox";
 import PageChooser from "../../utils/PageChooser";
+import GetAccountOrdersListController from "../../controller/GetAccountOrdersListController";
+import GetAccountOrdersListCountController from "../../controller/GetAccountOrdersListCountController";
+import { OrderListData } from "../../mapper/OrderMapper";
+import { useCookies } from "react-cookie";
 
 function AccountPageTitle() {
     return(
@@ -21,18 +25,18 @@ function OrderTableHeaderRow() {
     );
 }
 
-function OrderRow({ order } : { order: OrderType }) {
+function OrderRow({ order } : { order: OrderListData }) {
     return (
         <tr key={order.id}>
-            <td>{order.id}</td>
+            <td><a href={`/user/order?orderId=${order.id}`}>{order.id}</a></td>
             <td>{order.date}</td>
             <td>{order.content}</td>
-            <td>{order.cost}</td>
+            <td>{order.price}</td>
         </tr>
     );
 }
 
-function OrdersTable({ orders }: { orders: OrderType[] }) {
+function OrdersTable({ orders }: { orders: OrderListData[] }) {
     return (
         <div className="eletable">
             <table>
@@ -47,37 +51,60 @@ function OrdersTable({ orders }: { orders: OrderType[] }) {
     );
 }
 
-function OrdersList(props : { orders: OrderType[], setOrdersOfPage: (page: number) => void }) {
+function OrdersList() {
+    const [ordersCount, setOrdersCount] = useState<number>(0);
+    const [orders, setOrders] = useState<OrderListData[]>([]);
+    const [cookies] = useCookies(["accountId"]);
+    const prePage = 20;
+    const setOrdersOfPage = async (page: number) => {
+        await GetOrders(cookies.accountId, page, prePage, ordersCount, setOrders);
+    };
+    useEffect(() => {
+        GetOrdersCount(cookies.accountId, setOrdersCount);
+    }, []);
+    useEffect(() => {
+        GetOrders(cookies.accountId, 1, prePage, ordersCount, setOrders);
+    }, [ordersCount]);
+
     return (
         <div className="order-list-container">
-            <OrdersTable orders={props.orders} />
-            {/* TODO: add max page number */}
+            <OrdersTable orders={orders} />
             <div className="page-chooser-box">
-                <PageChooser maxPage={0} onPageChange={props.setOrdersOfPage} />
+                <PageChooser maxPage={Math.ceil(ordersCount / prePage)} onPageChange={setOrdersOfPage} />
             </div>
         </div>
     );
 }
 
-export type OrderType = {
-    id: string;
-    date: string;
-    content: string;
-    cost: number;
-};
-
 export default function AccountOrders() {
-    // TODO: set orders
-    const [orders, setOrders] = useState<OrderType[]>([]);
-    const setOrdersOfPage = (page: number) => {
-        setOrders([]);
-    };
-
     return (
         <div className="account-page-content">
             <AccountPageTitle />
             <div className="default-search-box-container"><SearchBox hasBorder={true} /></div>
-            <OrdersList orders={orders} setOrdersOfPage={setOrdersOfPage} />
+            <OrdersList />
         </div>
     );
+}
+
+async function GetOrders(
+    userId: string,
+    index: number,
+    prePage: number,
+    ordersCount: number,
+    setOrders: (orders: OrderListData[]) => void
+) {
+    if (index <= 0 || index >= Math.ceil(ordersCount / prePage)) {
+        return;
+    }
+    const start = (index - 1) * prePage;
+    const end = Math.min(index * prePage, ordersCount - 1);
+    setOrders(await GetAccountOrdersListController(userId, start, end));
+}
+
+async function GetOrdersCount(
+    userId: string,
+    setOrdersCount: (count: number) => void
+) {
+    const count = await GetAccountOrdersListCountController(userId);
+    setOrdersCount(count);
 }

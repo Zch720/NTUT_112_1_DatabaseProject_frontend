@@ -179,7 +179,7 @@ function AccountPageInfos (props: {
 }) {
     const { loginId, name, address, phone, email } = props.accountData;
     const { accountData, setAccountData, snackbars, setSnackbars } = props;
-    const [cookies] = useCookies(["accountId"]);
+    const [cookies, setCookies, deleteCookies] = useCookies(["accountId"]);
     const setNewValueInputs: any = {
         userId: cookies.accountId,
         userData: accountData,
@@ -187,6 +187,10 @@ function AccountPageInfos (props: {
         snackbars: snackbars,
         setSnackbars: setSnackbars
     };
+    const logout = () => {
+        deleteCookies("accountId");
+        window.location.href = "/user/signin#";
+    }
 
     return(
         <div className="account-profile-infos">
@@ -219,6 +223,7 @@ function AccountPageInfos (props: {
                 infoValue={phone}
                 newValueInputs={setNewValueInputs}
                 setNewValueFunc={ModifyAccountPhone} />
+            <button className="logout-button" onClick={logout}>登出</button>
         </div>
     );
 }
@@ -227,7 +232,8 @@ export default function AccountProfile() {
     const [cookies] = useCookies(["accountId"]);
     const [userData, setUserData] = useState<AccountProfileViewModel | null>(null);
     useEffect(() => {
-        GetAccountProfile(cookies.accountId, setUserData);
+        if (cookies.accountId !== undefined && cookies.accountId !== null && cookies.accountId !== "")
+            GetAccountProfile(cookies.accountId, setUserData);
     }, [cookies.accountId]);
     const [snackbars, setSnackbars] = useState<SnackbarType[]>([]);
 

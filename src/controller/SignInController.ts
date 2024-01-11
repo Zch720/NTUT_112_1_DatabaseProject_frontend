@@ -13,8 +13,8 @@ export default async function SignIn(
     setCookiesAccountId: (accounId: string) => void
 ): Promise<SignInStatus> {
     const body = {
-        userAccount: userAccount,
-        password: password
+        "userAccount": userAccount,
+        "password": password
     };
 
     try {
@@ -24,6 +24,7 @@ export default async function SignIn(
             }
         });
         
+        console.log(response);
         if (response.status == 200 && response.data != "") {
             setCookiesAccountId(response.data);
             return SignInStatus.Success;

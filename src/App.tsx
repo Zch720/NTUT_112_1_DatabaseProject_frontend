@@ -24,7 +24,7 @@ import ShopManagementInfo from "./account/admin/ShopInfo";
 import ShopProductManagementInfo from "./account/admin/ShopProductInfo";
 import ShopStaffManagementInfo from "./account/admin/ShopStaffInfo";
 import ProductsPage from "./product/ProductsPage";
-import AllProduct from "./product/AllProduct";
+import ProductListView from "./product/ProductListView";
 import ShopsPage from "./shop/ShopsPage";
 import ShopPage from "./shop/ShopPage";
 import ProductPage from "./product/ProductPage";
@@ -42,7 +42,15 @@ function MainBody() {
 					<Route path="/" element={<Navigate to="/home" />} />
 					<Route path="/home" element={<HomePage />} />
 					<Route path="/products" element={<ProductsPage />}>
-						<Route path="/products" element={<AllProduct />} />
+						<Route path="/products" element={<ProductListView productType="all"/>} />
+						<Route path="/products/chocolate-cookie" element={<ProductListView productType="chocolate-cookie" />} />
+						<Route path="/products/butter-cookie" element={<ProductListView productType="butter-cookie" />} />
+						<Route path="/products/sandwich-cookie" element={<ProductListView productType="sandwich-cookie" />} />
+						<Route path="/products/cookies" element={<ProductListView productType="cookies" />} />
+						<Route path="/products/soft-cookie" element={<ProductListView productType="soft-cookie" />} />
+						<Route path="/products/roll-puff-pastry" element={<ProductListView productType="roll-puff-pastry" />} />
+						<Route path="/products/egg-roll" element={<ProductListView productType="egg-roll" />} />
+						<Route path="/products/other" element={<ProductListView productType="other" />} />
 					</Route>
 					<Route path="/shops" element={<ShopsPage />} />
 					<Route path="/user/signin" element={<SignInPage />} />
@@ -70,7 +78,15 @@ function MainBody() {
 						<Route path="/user/admin/shop-staff-info" element={<ShopStaffManagementInfo />} />
 					</Route>
 					<Route path="/shop" element={<ShopPage />}>
-						<Route path="/shop" element={<AllProduct />} />
+						<Route path="/shop" element={<ProductListView productType="all" />} />
+						<Route path="/shop/chocolate-cookie" element={<ProductListView productType="chocolate-cookie" />} />
+						<Route path="/shop/butter-cookie" element={<ProductListView productType="butter-cookie" />} />
+						<Route path="/shop/sandwich-cookie" element={<ProductListView productType="sandwich-cookie" />} />
+						<Route path="/shop/cookies" element={<ProductListView productType="cookies" />} />
+						<Route path="/shop/soft-cookie" element={<ProductListView productType="soft-cookie" />} />
+						<Route path="/shop/roll-puff-pastry" element={<ProductListView productType="roll-puff-pastry" />} />
+						<Route path="/shop/egg-roll" element={<ProductListView productType="egg-roll" />} />
+						<Route path="/shop/other" element={<ProductListView productType="other" />} />
 					</Route>
 					<Route path="/product" element={<ProductPage />} />
 					<Route path="/user/shopping-cart" element={<ShoppingCart />} />

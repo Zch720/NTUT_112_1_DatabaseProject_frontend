@@ -56,7 +56,7 @@ function FollowedShopList (props: {
     return(
         <div className="shop-list">
             {shops.map((shop) => (
-                <ShopItem shopId={shop.shopId} shopIcon={shop.shopIcon} shopName={shop.shopName} />
+                <ShopItem key={"shop-list-" + shop.shopId} shopId={shop.shopId} shopIcon={shop.shopIcon} shopName={shop.shopName} />
             ))}
         </div>
     );

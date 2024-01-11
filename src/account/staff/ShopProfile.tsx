@@ -1,7 +1,26 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ShopProfile.css";
 import "../AccountProfile.css";
-import AccountProfile from "../AccountProfile";
+import { ShopPageDataType } from "../../mapper/ShopMapper";
+import { useCookies } from "react-cookie";
+import CannotLoadDataPage from "../../CannotLoadDataPage";
+import StaffGetShopProfileController from "../../controller/StaffGetShopProfileController";
+import ModifyShopNameController from "../../controller/ModifyShopNameController";
+import ModifyShopAddressController from "../../controller/ModifyShopAddressController";
+import ModifyShopPhoneController from "../../controller/ModifyShopPhoneController";
+import ModifyShopEmailController from "../../controller/ModifyShopEmailController";
+import SnackbarList, { GetNewSnackbar, SnackbarType } from "../../utils/Snackbar";
+import ModifyShopDescriptionController from "../../controller/ModifyShopDescriptionController";
+
+type ModifyInfoFunc = (
+    userId: string,
+    shopId: string,
+    value: string,
+    info: ShopPageDataType,
+    setInfo: (info: ShopPageDataType) => void,
+    snackbars: SnackbarType[],
+    setSnackbars: (snackbars: SnackbarType[]) => void
+) => void;
 
 function AccountPageTitle() {
     return(
@@ -15,16 +34,39 @@ function GetProfileInfoState(canEdit: boolean): string {
     return "account-profile-info-input";
 }
 
-function OneLineInfo (props: { infoType: string, buttonId: string, infoValue: string }) {
-    const { infoType, buttonId, infoValue } = props;
+function OneLineInfo (props: {
+    infoType: string,
+    buttonId: string,
+    infoValue: string,
+    shopId: string,
+    modifyInfo: ModifyInfoFunc,
+    info: ShopPageDataType,
+    setInfo: (info: ShopPageDataType) => void,
+    snackbars: SnackbarType[],
+    setSnackbars: (snackbars: SnackbarType[]) => void
+}) {
+    const { infoType, shopId, buttonId, info, setInfo, snackbars, setSnackbars } = props;
+    const [infoValue, setInfoValue] = useState<string>(props.infoValue);
     const [infoEditing, setInfoEditing] = useState<boolean>(false);
-    // TODO: input bug
+    const [cookies] = useCookies(['accountId']);
+    useEffect(() => {
+        if (!infoEditing && infoValue !== props.infoValue) {
+            props.modifyInfo(cookies.accountId, shopId, infoValue, info, setInfo, snackbars, setSnackbars);
+        }
+    }, [infoEditing]);
+
     return(
         <div className="account-profile-info">
             {infoType}
             <input type="checkbox" id={buttonId} onClick={() => setInfoEditing(!infoEditing)}/>
             <label htmlFor={buttonId}></label><br/>
-            <input className={GetProfileInfoState(infoEditing)} type="text" value={infoValue} readOnly></input>
+            <input
+                className={GetProfileInfoState(infoEditing)}
+                type="text"
+                value={infoValue}
+                onChange={(event) => setInfoValue(event.target.value)}
+                readOnly={!infoEditing}
+            ></input>
         </div>
     );
 }
@@ -39,15 +81,40 @@ function IconInfo() {
     );
 }
 
-function DescriptionInfo(props: { infoType: string, buttonId: string, infoValue: string }) {
-    const { infoType, buttonId, infoValue } = props;
+function DescriptionInfo(props: {
+    infoType: string,
+    buttonId: string,
+    infoValue: string,
+    shopId: string,
+    modifyInfo: ModifyInfoFunc,
+    info: ShopPageDataType,
+    setInfo: (info: ShopPageDataType) => void,
+    snackbars: SnackbarType[],
+    setSnackbars: (snackbars: SnackbarType[]) => void
+}) {
+    const { infoType, buttonId, shopId, modifyInfo, info, setInfo, snackbars, setSnackbars } = props;
+    const [infoValue, setInfoValue] = useState<string>(props.infoValue);
     const [infoEditing, setInfoEditing] = useState<boolean>(false);
+    const [cookies] = useCookies(['accountId']);
+    useEffect(() => {
+        if (!infoEditing && infoValue !== props.infoValue) {
+            modifyInfo(cookies.accountId, shopId, infoValue, info, setInfo, snackbars, setSnackbars);
+        }
+    }, [infoEditing]);
+
     return (
         <div className="account-profile-info">
             {infoType}
             <input type="checkbox" id={buttonId} onClick={() => setInfoEditing(!infoEditing)}/>
             <label htmlFor={buttonId}></label><br/>
-            <textarea className={GetProfileInfoState(infoEditing)} rows={5} cols={50} value={infoValue} readOnly></textarea>
+            <textarea
+                className={GetProfileInfoState(infoEditing)}
+                rows={5}
+                cols={50}
+                value={infoValue}
+                onChange={(event) => setInfoValue(event.target.value)}
+                readOnly={!infoEditing}
+            ></textarea>
         </div>
     );
 }
@@ -60,24 +127,64 @@ function setIconImage() {
     icon.src = URL.createObjectURL(input.files[0]);
 }
 
-type ShopProfileInfos = {
-    name: string;
-    icon: string;
-    description: string;
-    address: string;
-    email: string;
-    phone: string;
-};
-
-function ShopProfileInputs(props: { info: ShopProfileInfos }) {
+function ShopProfileInputs(props: {
+    info: ShopPageDataType,
+    setInfo: (info: ShopPageDataType) => void
+    snackbars: SnackbarType[],
+    setSnackbars: (snackbars: SnackbarType[]) => void
+}) {
+    const { info, setInfo, snackbars, setSnackbars } = props;
     return (
         <div className="shop-profile-inputs">
-            <OneLineInfo infoType="商店名稱" buttonId="shop-name" infoValue={props.info.name} />
+            <OneLineInfo
+                infoType="商店名稱"
+                buttonId="shop-name"
+                shopId={info.id}
+                infoValue={info.name}
+                modifyInfo={ModifyShopName}
+                info={info} setInfo={setInfo}
+                snackbars={snackbars}
+                setSnackbars={setSnackbars} />
             <IconInfo />
-            <DescriptionInfo infoType="商店描述" buttonId="shop-description" infoValue={props.info.description} />
-            <OneLineInfo infoType="地址" buttonId="shop-address" infoValue={props.info.address} />
-            <OneLineInfo infoType="Email" buttonId="shop-email" infoValue={props.info.email} />
-            <OneLineInfo infoType="聯絡電話" buttonId="shop-phone" infoValue={props.info.phone} />
+            <DescriptionInfo
+                infoType="商店描述"
+                buttonId="shop-description"
+                infoValue={info.description}
+                shopId={info.id}
+                modifyInfo={ModifyShopDescription}
+                info={info} setInfo={setInfo}
+                snackbars={snackbars}
+                setSnackbars={setSnackbars} />
+            <OneLineInfo
+                infoType="地址"
+                buttonId="shop-address"
+                shopId={info.id}
+                infoValue={info.address}
+                modifyInfo={ModifyShopAddress}
+                info={info}
+                setInfo={setInfo}
+                snackbars={snackbars}
+                setSnackbars={setSnackbars} />
+            <OneLineInfo
+                infoType="Email"
+                buttonId="shop-email"
+                shopId={info.id}
+                infoValue={info.email}
+                modifyInfo={ModifyShopEmail}
+                info={info}
+                setInfo={setInfo}
+                snackbars={snackbars}
+                setSnackbars={setSnackbars} />
+            <OneLineInfo
+                infoType="聯絡電話"
+                buttonId="shop-phone"
+                shopId={info.id}
+                infoValue={info.phone}
+                modifyInfo={ModifyShopPhone}
+                info={info}
+                setInfo={setInfo}
+                snackbars={snackbars}
+                setSnackbars={setSnackbars} />
         </div>
     );
 }
@@ -90,34 +197,147 @@ function ShopProfileIcon(props: { icon: string }) {
     );
 }
 
-function ShopProfiles(props: { info: ShopProfileInfos}) {
+function ShopProfiles(props: { shop: ShopPageDataType, setShop: (shop: ShopPageDataType) => void }) {
+    const [snackbars, setSnackbars] = useState<SnackbarType[]>([]);
+
     return (
-        <div className="account-profile-infos" style={{flexDirection: "row"}}>
-            <ShopProfileInputs info={props.info} />
-            <ShopProfileIcon icon={props.info.icon} />
-        </div>
+        <React.Fragment>
+            <SnackbarList snackbarList={snackbars} setSnackbarList={setSnackbars} />
+            <div className="account-profile-infos" style={{flexDirection: "row"}}>
+                <ShopProfileInputs info={props.shop} setInfo={props.setShop} snackbars={snackbars} setSnackbars={setSnackbars} />
+                <ShopProfileIcon icon={props.shop.icon} />
+            </div>
+        </React.Fragment>
     );
 }
 
 export default function ShopProfile() {
-    // TODO: replace with real data
-    let info: ShopProfileInfos = getFakeShopProfileInfos();
+    const [shop, setShop] = useState<ShopPageDataType | null>(null);
+    const [cookies] = useCookies(['accountId']);
+    useEffect(() => {
+        GetShop(cookies.accountId, setShop);
+    }, []);
 
+    if (shop === null)
+        return (
+            <CannotLoadDataPage />
+        );
     return (
         <div className="account-page-content">
             <AccountPageTitle />
-            <ShopProfiles info={info} />
+            <ShopProfiles shop={shop} setShop={setShop} />
         </div>
     );
 }
 
-function getFakeShopProfileInfos() {
-    return {
-        name: "Fake Shop",
-        icon: "",
-        description: "",
-        address: "",
-        email: "",
-        phone: "",
+async function GetShop(
+    userId: string,
+    setShop: (shop: ShopPageDataType | null) => void
+): Promise<void> {
+    setShop(await StaffGetShopProfileController(userId));
+}
+
+async function ModifyShopName(
+    userId: string,
+    shopId: string,
+    value: string,
+    info: ShopPageDataType,
+    setInfo: (info: ShopPageDataType) => void,
+    snackbars: SnackbarType[],
+    setSnackbars: (snackbars: SnackbarType[]) => void
+): Promise<void> {
+    const response = await ModifyShopNameController(userId, shopId, value);
+    if (response) {
+        setInfo({
+            ...info,
+            name: value
+        });
+        setSnackbars([...snackbars, GetNewSnackbar("修改成功", Date.now())]);
+    } else {
+        setSnackbars([...snackbars, GetNewSnackbar("修改失敗", Date.now())]);
+    }
+}
+
+async function ModifyShopAddress(
+    userId: string,
+    shopId: string,
+    value: string,
+    info: ShopPageDataType,
+    setInfo: (info: ShopPageDataType) => void,
+    snackbars: SnackbarType[],
+    setSnackbars: (snackbars: SnackbarType[]) => void
+): Promise<void> {
+    const response  = await ModifyShopAddressController(userId, shopId, value);
+    if (response) {
+        setInfo({
+            ...info,
+            address: value
+        });
+        setSnackbars([...snackbars, GetNewSnackbar("修改成功", Date.now())]);
+    } else {
+        setSnackbars([...snackbars, GetNewSnackbar("修改失敗", Date.now())]);
+    }
+}
+
+async function ModifyShopPhone(
+    userId: string,
+    shopId: string,
+    value: string,
+    info: ShopPageDataType,
+    setInfo: (info: ShopPageDataType) => void,
+    snackbars: SnackbarType[],
+    setSnackbars: (snackbars: SnackbarType[]) => void
+): Promise<void> {
+    const response = await ModifyShopPhoneController(userId, shopId, value);
+    if (response) {
+        setInfo({
+            ...info,
+            phone: value
+        });
+        setSnackbars([...snackbars, GetNewSnackbar("修改成功", Date.now())]);
+    } else {
+        setSnackbars([...snackbars, GetNewSnackbar("修改失敗", Date.now())]);
+    }
+}
+
+async function ModifyShopEmail(
+    userId: string,
+    shopId: string,
+    value: string,
+    info: ShopPageDataType,
+    setInfo: (info: ShopPageDataType) => void,
+    snackbars: SnackbarType[],
+    setSnackbars: (snackbars: SnackbarType[]) => void
+): Promise<void> {
+    const resposne = await ModifyShopEmailController(userId, shopId, value);
+    if (resposne) {
+        setInfo({
+            ...info,
+            email: value
+        });
+        setSnackbars([...snackbars, GetNewSnackbar("修改成功", Date.now())]);
+    } else {
+        setSnackbars([...snackbars, GetNewSnackbar("修改失敗", Date.now())]);
+    }
+}
+
+async function ModifyShopDescription(
+    userId: string,
+    shopId: string,
+    value: string,
+    info: ShopPageDataType,
+    setInfo: (info: ShopPageDataType) => void,
+    snackbars: SnackbarType[],
+    setSnackbars: (snackbars: SnackbarType[]) => void
+): Promise<void> {
+    const resposne = await ModifyShopDescriptionController(userId, shopId, value);
+    if (resposne) {
+        setInfo({
+            ...info,
+            description: value
+        });
+        setSnackbars([...snackbars, GetNewSnackbar("修改成功", Date.now())]);
+    } else {
+        setSnackbars([...snackbars, GetNewSnackbar("修改失敗", Date.now())]);
     }
 }

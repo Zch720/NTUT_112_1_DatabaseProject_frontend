@@ -1,6 +1,6 @@
 import axios from "axios";
 import { backendUrl } from "./config.json";
-import { ShopListData } from "../mapper/ShopMapper";
+import { ShopListData, ToShopListViewModel } from "../mapper/ShopMapper";
 
 export default async function GetShopsList(
     from: number,
@@ -9,15 +9,7 @@ export default async function GetShopsList(
     try {
         const response = await axios.get(`${backendUrl}/api/shop/list?from=${from}&to=${to}`);
         if (response.status == 200 && response.data != "") {
-            const shopListData: ShopListData[] = [];
-            for (const shopModel of response.data) {
-                shopListData.push({
-                    shopId: shopModel.Id,
-                    shopIcon: shopModel.Icon,
-                    shopName: shopModel.Name
-                });
-            }
-            return shopListData;
+            return response.data.map((shopModel: any) => ToShopListViewModel(shopModel));
         }
         return [];
     } catch (error) {

@@ -17,7 +17,7 @@ export default async function GetAccountType(
 
     try {
         const response = await axios.get(
-            `${backendUrl}/user/type?userId=${userId}`
+            `${backendUrl}/api/user/type?userId=${userId}`
         );
         switch (response.data) {
             case "customer":

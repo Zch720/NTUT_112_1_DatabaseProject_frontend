@@ -7,10 +7,8 @@ export default async function ModifyAccountPhone(
 ): Promise<boolean> {
     try {
         const response = await axios.put(`${backendUrl}/api/user/modify/phone`, {
-            userId: userId,
-            phone: phone
-        }, {
-            withCredentials: true,
+            "userId": userId,
+            "phone": phone
         });
         return response.status == 200;
     } catch (error) {

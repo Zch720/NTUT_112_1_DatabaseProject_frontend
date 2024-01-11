@@ -7,10 +7,8 @@ export default async function ModifyAccountAddress(
 ): Promise<boolean> {
     try {
         const response = await axios.put(`${backendUrl}/api/user/modify/address`, {
-            userId: userId,
-            address: address
-        }, {
-            withCredentials: true,
+            "userId": userId,
+            "address": address
         });
         return response.status == 200;
     } catch (error) {

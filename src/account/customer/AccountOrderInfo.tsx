@@ -1,39 +1,7 @@
+import { useEffect, useState } from "react";
+import GetAccountOrderController from "../../controller/GetAccountOrderController";
+import { OrderCostInfoType, OrderInfoType, OrderProductInfoType, OrderReciverInfoType } from "../../mapper/OrderMapper";
 import "./AccountOrderInfo.css";
-
-type OrderReciverInfoType = {
-    name: string;
-    phone: string;
-    address: string;
-};
-
-type OrderProductType = {
-    image: string;
-    name: string;
-    amount: number;
-    price: number;
-};
-
-type OrderCostType = {
-    productCost: number;
-    productDiscount: number;
-    shippingCost: number;
-    shippingDiscount: number;
-    totalCost: number;
-};
-
-
-type OrderInfoType = {
-    id: string;
-    state: string;
-    reciverInfo: OrderReciverInfoType;
-    shopIcon: string;
-    shopName: string;
-    products: OrderProductType[];
-    cost: OrderCostType;
-    paymentMethod: string;
-    orderDate: string;
-    shippingDate: string;
-};
 
 function AccountPageTitle() {
     return(
@@ -41,7 +9,10 @@ function AccountPageTitle() {
     );
 }
 
-function OrderInfoHeader(props: { id: string, state: string }) {
+function OrderInfoHeader(props: {
+    id: string,
+    state: string
+}) {
     const { id, state } = props;
     
     return (
@@ -52,7 +23,9 @@ function OrderInfoHeader(props: { id: string, state: string }) {
     );
 }
 
-function OrderReciverInfo(props: { reciverInfo: OrderReciverInfoType }) {
+function OrderReciverInfo(props: {
+    reciverInfo: OrderReciverInfoType
+}) {
     const { reciverInfo } = props;
     
     return (
@@ -78,7 +51,9 @@ function OrderContentHeader(props: { shopIcon: string, shopName: string }) {
     );
 }
 
-function OrderProductRow(props: { product: OrderProductType }) {
+function OrderProductRow(props: {
+    product: OrderProductInfoType
+}) {
     const { product } = props;
 
     return (
@@ -93,7 +68,7 @@ function OrderProductRow(props: { product: OrderProductType }) {
                 {product.name}
             </td>
             <td style={{width: "5%", textAlign: "right" }}>
-                x{product.amount}
+                x{product.quantity}
             </td>
             <td style={{width: "10%", textAlign: "right" }}>
                 ${product.price}
@@ -102,7 +77,9 @@ function OrderProductRow(props: { product: OrderProductType }) {
     );
 }
 
-function OrderContentProductTable(props: { products: OrderProductType[] }) {
+function OrderContentProductTable(props: {
+    products: OrderProductInfoType[]
+}) {
     const { products } = props;
 
     return (
@@ -116,7 +93,10 @@ function OrderContentProductTable(props: { products: OrderProductType[] }) {
     );
 }
 
-function OrderCalculateRow(props: { label: string, value: string }) {
+function OrderCalculateRow(props: {
+    label: string,
+    value: string
+}) {
     return (
         <tr>
             <td>
@@ -129,7 +109,9 @@ function OrderCalculateRow(props: { label: string, value: string }) {
     );
 }
 
-function OrderContentCalculateTable(props: { cost: OrderCostType }) {
+function OrderContentCalculateTable(props: {
+    cost: OrderCostInfoType
+}) {
     const { cost } = props;
 
     return (
@@ -149,7 +131,12 @@ function OrderContentCalculateTable(props: { cost: OrderCostType }) {
     );
 }
 
-function OrderContent(props: { shopIcon: string, shopName: string, products: OrderProductType[], cost: OrderCostType }) {
+function OrderContent(props: {
+    shopIcon: string,
+    shopName: string,
+    products: OrderProductInfoType[],
+    cost: OrderCostInfoType
+}) {
     const { shopIcon, shopName, products, cost } = props;
 
     return (
@@ -188,16 +175,23 @@ function OrderOtherInfos(props: { paymentMethod: string, orderDate: string, ship
 }
 
 function OrderInfos() {
-    // TODO: get order info from server
-    const order: OrderInfoType = getFakeOrderInfo();
+    const [order, setOrder] = useState<OrderInfoType | null>(null);
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const orderId = params.get("orderId");
+        if (orderId != null)
+            GetOrder(orderId, setOrder);
+    }, []);
 
     return (
-        <div className="account-order-infos">
-            <OrderInfoHeader id={order.id} state={order.state} />
-            <OrderReciverInfo reciverInfo={order.reciverInfo} />
-            <OrderContent shopIcon={order.shopIcon} shopName={order.shopName} products={order.products} cost={order.cost} />
-            <OrderOtherInfos paymentMethod={order.paymentMethod} orderDate={order.orderDate} shippingDate={order.shippingDate} />
-        </div>
+        order ?
+            <div className="account-order-infos">
+                <OrderInfoHeader id={order.id} state={order.status} />
+                <OrderReciverInfo reciverInfo={order.reciverInfo} />
+                <OrderContent shopIcon={order.shopIcon} shopName={order.shopName} products={order.products} cost={order.cost} />
+                <OrderOtherInfos paymentMethod={order.paymentMethod} orderDate={order.orderDate} shippingDate={order.shippingDate} />
+            </div>
+        : null
     );
 }
 
@@ -210,40 +204,9 @@ export default function AccountOrderInfo() {
     );
 }
 
-function getFakeOrderInfo(): OrderInfoType {
-    return {
-        id: "I5487878787",
-        state: "未出貨",
-        reciverInfo: {
-            name: "幽靈人",
-            phone: "091232123123",
-            address: "台北市中正區忠孝東路一段100號5樓"
-        },
-        shopIcon: "/logo.PNG",
-        shopName: "巧克力巨獸",
-        products: [
-            {
-                image: "https://i.imgur.com/HgELSyF.png",
-                name: "經典巧克力脆片餅乾 - 5 片裝",
-                amount: 1,
-                price: 80
-            },
-            {
-                image: "https://i.imgur.com/4pPAVIJ.png",
-                name: "黑巧夾心餅乾 - 10 片裝",
-                amount: 1,
-                price: 200
-            }
-        ],
-        cost: {
-            productCost: 280,
-            productDiscount: 30,
-            shippingCost: 60,
-            shippingDiscount: 60,
-            totalCost: 250
-        },
-        paymentMethod: "貨到付款",
-        orderDate: "2023/10/22",
-        shippingDate: "未出貨"
-    };
+async function GetOrder(
+    orderId: string,
+    setOrder: (order: OrderInfoType | null) => void
+) {
+    setOrder(await GetAccountOrderController(orderId));
 }

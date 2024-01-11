@@ -16,6 +16,9 @@ export default function ShopsPage() {
     useEffect(() => {
         GetShopsPage(setAllShops);
     }, []);
+    useEffect(() => {
+        GetShops(1, shopPrePage, allShops, setShops);
+    }, [allShops]);
 
     return (
         <div className="shops-page-container">
@@ -37,7 +40,7 @@ async function GetShops(
     allShops: number,
     setShops: (shops: ShopListData[]) => void,
 ) {
-    if (index <= 0 || index >= Math.ceil(allShops / prePage)) {
+    if (index <= 0 || index > Math.ceil(allShops / prePage)) {
         return;
     }
     const start = (index - 1) * prePage;

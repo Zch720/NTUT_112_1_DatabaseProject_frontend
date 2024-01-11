@@ -127,11 +127,11 @@ async function SignUp(
     }
 
     const signUpInput: SignUpInput = {
-        loginId: signUpAttrs.loginId,
-        password: signUpAttrs.password,
-        name: signUpAttrs.name,
-        address: signUpAttrs.address,
-        email: signUpAttrs.email
+        LoginId: signUpAttrs.loginId,
+        Password: signUpAttrs.password,
+        Name: signUpAttrs.name,
+        Address: signUpAttrs.address,
+        Email: signUpAttrs.email
     };
     const result: SignUpStatus = await SignUpController(signUpInput);
     if (result === SignUpStatus.Success) {

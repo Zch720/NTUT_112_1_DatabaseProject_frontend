@@ -62,6 +62,8 @@ export function GetProductsPageShopName() {
 ProductsPage.defaultProps = { shopId: null, shopName: null };
 export default function ProductsPage(props : { shopId: string, shopName: string }) {
     const { shopId, shopName } = props;
+    const urlPrefix = shopId == null ? "/products" : "/shop";
+    const urlParams = shopId == null ? "" : `?id=${shopId}`;
 
     return (
         <React.Fragment>
@@ -69,7 +71,15 @@ export default function ProductsPage(props : { shopId: string, shopName: string 
                 <div className="product-category-menu">
                     <h3 className="product-category-menu-title">商品分類</h3>
                     <div className="product-category-menu-options">
-                        <a href="/products#">全部</a>
+                        <a href={`${urlPrefix}${urlParams}#`}>全部</a>
+                        <a href={`${urlPrefix}/chocolate-cookie${urlParams}#`}>巧克力餅乾</a>
+                        <a href={`${urlPrefix}/butter-cookie${urlParams}#`}>奶油餅乾</a>
+                        <a href={`${urlPrefix}/sandwich-cookie${urlParams}#`}>夾心餅乾</a>
+                        <a href={`${urlPrefix}/cookies${urlParams}#`}>曲奇餅乾</a>
+                        <a href={`${urlPrefix}/soft-cookie${urlParams}#`}>美式軟餅乾</a>
+                        <a href={`${urlPrefix}/roll-puff-pastry${urlParams}#`}>捲心酥</a>
+                        <a href={`${urlPrefix}/egg-roll${urlParams}#`}>蛋捲</a>
+                        <a href={`${urlPrefix}/other${urlParams}#`}>其他</a>
                     </div>
                 </div>
                 <Outlet context={{ shopId: shopId, shopName: shopName }}/>

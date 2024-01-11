@@ -6,14 +6,15 @@ export default async function ModifyAccountName(
     name: string
 ): Promise<boolean> {
     try {
-        const response = await axios.put(`${backendUrl}/api/user/modify/name`, {
-            userId: userId,
-            name: name
-        }, {
-            withCredentials: true,
-        });
+        const body = {
+            "userId": userId,
+            "name": name
+        };
+
+        const response = await axios.put(`${backendUrl}/api/user/modify/name`, body);
         return response.status == 200;
     } catch (error) {
+        console.log(error);
         return false;
     }
 }
